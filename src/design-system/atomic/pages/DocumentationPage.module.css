@@ -1,95 +1,95 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .subtitle {
-  margin-top: 1rem;
-  color: var(--color-text-secondary);
-  font-size: 1.125rem;
+    margin-top: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
 }
 
 .content {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
 }
 
 .sidebar {
-  position: sticky;
-  top: 2rem;
-  height: fit-content;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
 }
 
 .navCard {
-  padding: 1.5rem;
+    padding: 1.5rem;
 }
 
 .nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .navLink {
-  padding: 0.5rem 0;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+    padding: 0.5rem 0;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 .navLink:hover {
-  color: var(--color-primary-500);
-  background-color: var(--color-bg-secondary);
-  padding-left: 0.5rem;
+    color: var(--color-primary-500);
+    background-color: var(--color-bg-secondary);
+    padding-left: 0.5rem;
 }
 
 .main {
-  min-height: 600px;
+    min-height: 600px;
 }
 
 .docCard {
-  padding: 2rem;
+    padding: 2rem;
 }
 
 .codeBlock {
-  background-color: var(--color-bg-secondary);
-  padding: 1rem;
-  border-radius: 8px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.875rem;
-  overflow-x: auto;
-  margin: 1rem 0;
-  border: 1px solid var(--color-border-primary);
+    background-color: var(--color-bg-secondary);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--color-border-primary);
 }
 
 .cta {
-  margin-top: 2rem;
-  text-align: center;
+    margin-top: 2rem;
+    text-align: center;
 }
 
 @media (max-width: 768px) {
-  .content {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .sidebar {
-    position: static;
-  }
-  
-  .navCard {
-    padding: 1rem;
-  }
-  
-  .docCard {
-    padding: 1.5rem;
-  }
+    .content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .sidebar {
+        position: static;
+    }
+
+    .navCard {
+        padding: 1rem;
+    }
+
+    .docCard {
+        padding: 1.5rem;
+    }
 }

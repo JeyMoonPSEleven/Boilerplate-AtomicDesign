@@ -1,91 +1,91 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .subtitle {
-  margin-top: 1rem;
-  color: var(--color-text-secondary);
-  font-size: 1.125rem;
+    margin-top: 1rem;
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
 }
 
 .section {
-  margin-bottom: 4rem;
+    margin-bottom: 4rem;
 }
 
 .sectionTitle {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-primary);
 }
 
 .badge {
-  font-size: 0.875rem;
+    font-size: 0.875rem;
 }
 
 .componentsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .componentCard {
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .componentCard:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .componentHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .componentDescription {
-  margin-bottom: 1.5rem;
-  color: var(--color-text-secondary);
-  line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
 }
 
 .componentActions {
-  display: flex;
-  gap: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .cta {
-  margin-top: 4rem;
+    margin-top: 4rem;
 }
 
 .ctaCard {
-  text-align: center;
-  padding: 2rem;
-  background-color: var(--color-bg-secondary);
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-bg-secondary);
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 1rem 0.5rem;
-  }
-  
-  .componentsGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .componentActions {
-    flex-direction: column;
-  }
+    .container {
+        padding: 1rem 0.5rem;
+    }
+
+    .componentsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .componentActions {
+        flex-direction: column;
+    }
 }

@@ -1,74 +1,74 @@
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 4rem 1rem;
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
 }
 
 .errorCard {
-  text-align: center;
-  padding: 3rem 2rem;
+    text-align: center;
+    padding: 3rem 2rem;
 }
 
 .errorContent {
-  max-width: 500px;
-  margin: 0 auto;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .errorCode {
-  font-size: 6rem;
-  font-weight: 700;
-  color: var(--color-primary-500);
-  margin-bottom: 1rem;
-  line-height: 1;
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--color-primary-500);
+    margin-bottom: 1rem;
+    line-height: 1;
 }
 
 .errorDescription {
-  margin: 1.5rem 0 2rem;
-  color: var(--color-text-secondary);
-  font-size: 1.125rem;
+    margin: 1.5rem 0 2rem;
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
 }
 
 .errorActions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .helpSection {
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-border-primary);
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border-primary);
 }
 
 .helpLink {
-  color: var(--color-primary-500);
-  text-decoration: none;
-  font-weight: 500;
+    color: var(--color-primary-500);
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .helpLink:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 2rem 1rem;
-  }
-  
-  .errorCard {
-    padding: 2rem 1rem;
-  }
-  
-  .errorCode {
-    font-size: 4rem;
-  }
-  
-  .errorActions {
-    flex-direction: column;
-    align-items: center;
-  }
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    .errorCard {
+        padding: 2rem 1rem;
+    }
+
+    .errorCode {
+        font-size: 4rem;
+    }
+
+    .errorActions {
+        flex-direction: column;
+        align-items: center;
+    }
 }

@@ -1,78 +1,78 @@
 .features {
-  padding: 4rem 0;
-  background-color: var(--color-bg-secondary);
+    padding: 4rem 0;
+    background-color: var(--color-bg-secondary);
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .sectionTitle {
-  text-align: center;
-  margin-bottom: 3rem;
-  color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-text-primary);
 }
 
 .featuresGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 .featureCard {
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .featureCard:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }
 
 .cta {
-  padding: 4rem 0;
-  background-color: var(--color-bg-primary);
+    padding: 4rem 0;
+    background-color: var(--color-bg-primary);
 }
 
 .ctaCard {
-  text-align: center;
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
-  color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+    color: white;
 }
 
 .ctaText {
-  margin: 1rem 0 2rem;
-  font-size: 1.125rem;
-  opacity: 0.9;
+    margin: 1rem 0 2rem;
+    font-size: 1.125rem;
+    opacity: 0.9;
 }
 
 .ctaActions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
-  .features {
-    padding: 2rem 0;
-  }
-  
-  .featuresGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .featureCard {
-    padding: 1.5rem;
-  }
-  
-  .ctaActions {
-    flex-direction: column;
-    align-items: center;
-  }
+    .features {
+        padding: 2rem 0;
+    }
+
+    .featuresGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .featureCard {
+        padding: 1.5rem;
+    }
+
+    .ctaActions {
+        flex-direction: column;
+        align-items: center;
+    }
 }

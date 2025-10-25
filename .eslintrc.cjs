@@ -6,9 +6,7 @@ module.exports = {
         node: true,
         jest: true
     },
-    extends: [
-        'eslint:recommended'
-    ],
+    extends: ['eslint:recommended', 'plugin:storybook/recommended'],
     ignorePatterns: ['dist', '.eslintrc.cjs', 'components/', 'node_modules/'],
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
