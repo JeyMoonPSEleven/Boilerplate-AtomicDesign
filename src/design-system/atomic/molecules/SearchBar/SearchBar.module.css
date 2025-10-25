@@ -1,0 +1,317 @@
+/* src/design-system/atomic/molecules/SearchBar/SearchBar.module.css - CSS 2025 */
+
+.searchBar {
+  /* Layout */
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  
+  /* Container */
+  container-type: inline-size;
+}
+
+.searchInput {
+  /* Layout */
+  width: 100%;
+  height: var(--input-height-md);
+  
+  /* Styling */
+  background-color: var(--color-background-primary);
+  border: var(--border-width-thin) solid var(--color-border-primary);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text-primary);
+  
+  /* Typography */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  
+  /* Transitions */
+  transition: var(--transition-all);
+  
+  /* Reset */
+  appearance: none;
+  outline: none;
+}
+
+/* Focus state */
+.searchInput:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-focus);
+  background-color: var(--surface-base);
+}
+
+/* Hover state */
+.searchInput:hover:not(:disabled):not(:focus) {
+  border-color: var(--color-neutral-400);
+}
+
+/* Disabled state */
+.searchInput:disabled {
+  background-color: var(--color-neutral-100);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* === TAMAÑOS === */
+.small .searchInput {
+  height: var(--input-height-sm);
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-xs) var(--spacing-2xl);
+}
+
+.medium .searchInput {
+  /* Estilos base ya aplicados */
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) var(--spacing-2xl);
+}
+
+.large .searchInput {
+  height: var(--input-height-lg);
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) var(--spacing-3xl);
+}
+
+/* === ICONOS === */
+.searchIcon {
+  position: absolute;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  transition: color var(--transition-base);
+  z-index: 1;
+}
+
+.searchInput:focus ~ .searchIcon {
+  color: var(--color-primary-500);
+}
+
+.small .searchIcon {
+  left: var(--spacing-sm);
+}
+
+.large .searchIcon {
+  left: var(--spacing-lg);
+}
+
+/* === BOTONES === */
+.searchButton {
+  position: absolute;
+  right: var(--spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  
+  /* Styling */
+  background-color: var(--color-primary-500);
+  color: var(--color-text-on-primary);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Interactions */
+  cursor: pointer;
+  transition: var(--transition-all);
+  
+  /* Reset */
+  outline: none;
+}
+
+.searchButton:hover:not(:disabled) {
+  background-color: var(--color-primary-600);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.searchButton:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.searchButton:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.searchButton:disabled {
+  background-color: var(--color-neutral-300);
+  cursor: not-allowed;
+  transform: translateY(-50%);
+}
+
+/* Tamaños del botón */
+.small .searchButton {
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  padding: var(--spacing-xs);
+}
+
+.medium .searchButton {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  padding: var(--spacing-sm);
+}
+
+.large .searchButton {
+  width: var(--spacing-2xl);
+  height: var(--spacing-2xl);
+  padding: var(--spacing-md);
+}
+
+/* === BOTÓN CLEAR === */
+.clearButton {
+  position: absolute;
+  right: var(--spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  
+  /* Styling */
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-sm);
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Interactions */
+  cursor: pointer;
+  transition: var(--transition-all);
+  
+  /* Reset */
+  outline: none;
+}
+
+.clearButton:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-neutral-100);
+}
+
+.clearButton:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+/* Tamaños del botón clear */
+.small .clearButton {
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  padding: var(--spacing-xs);
+}
+
+.medium .clearButton {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  padding: var(--spacing-sm);
+}
+
+.large .clearButton {
+  width: var(--spacing-2xl);
+  height: var(--spacing-2xl);
+  padding: var(--spacing-md);
+}
+
+/* Posicionamiento cuando hay botón de búsqueda */
+.clearButton.withSearchButton {
+  right: calc(var(--spacing-sm) + var(--spacing-xl) + var(--spacing-sm));
+}
+
+.small .clearButton.withSearchButton {
+  right: calc(var(--spacing-sm) + var(--spacing-lg) + var(--spacing-sm));
+}
+
+.large .clearButton.withSearchButton {
+  right: calc(var(--spacing-sm) + var(--spacing-2xl) + var(--spacing-sm));
+}
+
+/* === CONTAINER QUERIES === */
+@container (max-width: 300px) {
+  .searchInput {
+    font-size: var(--font-size-sm);
+    padding-left: var(--spacing-xl);
+  }
+  
+  .searchIcon {
+    left: var(--spacing-sm);
+  }
+  
+  .searchButton,
+  .clearButton {
+    width: var(--spacing-md);
+    height: var(--spacing-md);
+    padding: var(--spacing-xs);
+  }
+}
+
+@container (min-width: 600px) {
+  .searchInput {
+    padding-left: var(--spacing-3xl);
+  }
+  
+  .searchIcon {
+    left: var(--spacing-lg);
+  }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 576px) {
+  .searchBar {
+    width: 100%;
+  }
+  
+  .searchInput {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .searchBar {
+    max-width: 400px;
+  }
+}
+
+/* === DARK MODE === */
+@media (prefers-color-scheme: dark) {
+  .searchInput {
+    background-color: var(--color-neutral-800);
+    border-color: var(--color-neutral-600);
+    color: var(--color-text-primary);
+  }
+  
+  .searchInput:focus {
+    background-color: var(--color-neutral-700);
+  }
+  
+  .clearButton:hover {
+    background-color: var(--color-neutral-700);
+  }
+}
+
+/* === HIGH CONTRAST === */
+@media (prefers-contrast: high) {
+  .searchInput {
+    border-width: var(--border-width-medium);
+  }
+  
+  .searchButton,
+  .clearButton {
+    border: var(--border-width-thin) solid currentColor;
+  }
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  .searchInput,
+  .searchButton,
+  .clearButton {
+    transition: none;
+  }
+  
+  .searchButton:hover:not(:disabled) {
+    transform: translateY(-50%);
+  }
+}

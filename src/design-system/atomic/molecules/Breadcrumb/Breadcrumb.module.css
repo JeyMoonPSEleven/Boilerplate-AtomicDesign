@@ -1,0 +1,82 @@
+/* src/design-system/atomic/molecules/Breadcrumb/Breadcrumb.module.css */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-neutral-600);
+}
+
+.breadcrumb.small {
+    font-size: var(--font-size-sm);
+}
+
+.breadcrumb.medium {
+    font-size: var(--font-size-base);
+}
+
+.breadcrumb.large {
+    font-size: var(--font-size-lg);
+}
+
+.breadcrumbLink {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: var(--transition-fast);
+    color: var(--color-neutral-600);
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-xs);
+}
+
+.breadcrumbLink:hover {
+    color: var(--color-neutral-900);
+    background-color: var(--color-neutral-100);
+}
+
+.breadcrumbLink:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-primary-100);
+}
+
+.breadcrumbLink.small {
+    font-size: var(--font-size-sm);
+}
+
+.breadcrumbLink.medium {
+    font-size: var(--font-size-base);
+}
+
+.breadcrumbLink.large {
+    font-size: var(--font-size-lg);
+}
+
+.breadcrumbCurrent {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-neutral-900);
+    font-weight: var(--font-weight-medium);
+}
+
+.breadcrumbCurrent.small {
+    font-size: var(--font-size-sm);
+}
+
+.breadcrumbCurrent.medium {
+    font-size: var(--font-size-base);
+}
+
+.breadcrumbCurrent.large {
+    font-size: var(--font-size-lg);
+}
+
+.breadcrumbSeparator {
+    color: var(--color-neutral-400);
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumbIcon {
+    flex-shrink: 0;
+}

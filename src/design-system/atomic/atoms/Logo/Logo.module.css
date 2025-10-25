@@ -1,0 +1,59 @@
+/* Logo/Logo.module.css */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logoImage {
+    flex-shrink: 0;
+}
+
+.logoText {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-600);
+}
+
+.logo.small .logoImage {
+    width: var(--spacing-lg);
+    height: var(--spacing-lg);
+}
+
+.logo.small .logoText {
+    font-size: var(--font-size-sm);
+}
+
+.logo.medium .logoImage {
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+}
+
+.logo.medium .logoText {
+    font-size: var(--font-size-base);
+}
+
+.logo.large .logoImage {
+    width: var(--spacing-2xl);
+    height: var(--spacing-2xl);
+}
+
+.logo.large .logoText {
+    font-size: var(--font-size-lg);
+}
+
+.logo.xlarge .logoImage {
+    width: var(--spacing-3xl);
+    height: var(--spacing-3xl);
+}
+
+.logo.xlarge .logoText {
+    font-size: var(--font-size-xl);
+}

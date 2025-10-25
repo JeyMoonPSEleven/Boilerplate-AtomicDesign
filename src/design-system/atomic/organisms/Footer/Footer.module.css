@@ -1,0 +1,181 @@
+/* Footer/Footer.module.css */
+.footer {
+    background-color: var(--color-neutral-900);
+    color: var(--color-white);
+}
+
+.footerContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-3xl) var(--spacing-lg);
+}
+
+.footerGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+    .footerGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .footerGrid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+}
+
+.companyInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.companyName {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-white);
+}
+
+.companyDescription {
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-300);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+}
+
+.socialLinks {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+    background-color: var(--color-neutral-800);
+    color: var(--color-neutral-400);
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.socialLink:hover {
+    background-color: var(--color-primary-600);
+    color: var(--color-white);
+}
+
+.footerSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.sectionTitle {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.sectionLinks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sectionLink {
+    color: var(--color-neutral-300);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.sectionLink:hover {
+    color: var(--color-white);
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-neutral-300);
+}
+
+.contactIcon {
+    width: var(--spacing-md);
+    height: var(--spacing-md);
+    color: var(--color-neutral-400);
+    flex-shrink: 0;
+}
+
+.contactLink {
+    color: var(--color-neutral-300);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.contactLink:hover {
+    color: var(--color-white);
+}
+
+.footerBottom {
+    border-top: 1px solid var(--color-neutral-800);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .footerBottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.copyright {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-400);
+}
+
+.legalLinks {
+    display: flex;
+    gap: var(--spacing-lg);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.legalLink {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-400);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.legalLink:hover {
+    color: var(--color-white);
+}

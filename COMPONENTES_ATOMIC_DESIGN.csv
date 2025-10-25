@@ -1,0 +1,60 @@
+Nivel,Nombre,Archivo,Descripción,Props Principales,Estado
+Atoms,Button,Button.tsx,Botón reutilizable con variantes y estados,variant size isFullWidth isLoading,✅ Completo
+Atoms,Input,Input.tsx,Campo de entrada de texto,type value onChange placeholder,✅ Completo
+Atoms,Text,Text.tsx,Texto con variantes de tamaño y color,variant color weight,✅ Completo
+Atoms,Heading,Heading.tsx,Títulos con niveles jerárquicos,level variant,✅ Completo
+Atoms,Icon,Icon.tsx,Icono SVG reutilizable,name children,✅ Completo
+Atoms,Badge,Badge.tsx,Etiqueta con variantes de color,variant size pill,✅ Completo
+Atoms,Checkbox,Checkbox.tsx,Casilla de verificación,checked onChange label,✅ Completo
+Atoms,Link,Link.tsx,Enlace con variantes,variant size underline,✅ Completo
+Atoms,Progress,Progress.tsx,Barra de progreso,value max size variant,✅ Completo
+Atoms,Spinner,Spinner.tsx,Indicador de carga,size variant text,✅ Completo
+Atoms,Divider,Divider.tsx,Separador visual,orientation variant thickness,✅ Completo
+Atoms,Avatar,Avatar.tsx,Avatar de usuario,src alt size fallback,✅ Completo
+Atoms,Image,Image.tsx,Imagen optimizada,src alt width height fit,✅ Completo
+Atoms,Radio,Radio.tsx,Botón de radio,label value checked onChange,✅ Completo
+Atoms,Select,Select.tsx,Lista desplegable,label options value onChange,✅ Completo
+Atoms,Switch,Switch.tsx,Interruptor de encendido/apagado,label checked onChange,✅ Completo
+Atoms,Slider,Slider.tsx,Control deslizante,label value min max onChange,✅ Completo
+Atoms,Logo,Logo.tsx,Logo de marca,src alt text size,✅ Completo
+Atoms,ColorSwatch,ColorSwatch.tsx,Muestra de color,color name size showName,✅ Completo
+Atoms,FileUpload,FileUpload.tsx,Subida de archivos,label accept multiple onChange,✅ Completo
+Atoms,Dropdown,Dropdown.tsx,Menú desplegable,label options value onChange,✅ Completo
+Atoms,Video,Video.tsx,Reproductor de video,src poster autoplay controls,✅ Completo
+Molecules,Card,Card.tsx,Tarjeta contenedora,variant padding children,✅ Completo
+Molecules,Form,Form.tsx,Formulario con validación,onSubmit validation children,✅ Completo
+Molecules,Alert,Alert.tsx,Alerta con variantes,variant title message dismissible,✅ Completo
+Molecules,Modal,Modal.tsx,Modal con overlay,isOpen onClose title size,✅ Completo
+Molecules,Tabs,Tabs.tsx,Pestañas navegables,items defaultActiveTab variant,✅ Completo
+Molecules,Toast,Toast.tsx,Notificación temporal,variant title message duration,✅ Completo
+Molecules,Accordion,Accordion.tsx,Acordeón expandible,items allowMultiple,✅ Completo
+Molecules,Breadcrumb,Breadcrumb.tsx,Navegación de migas de pan,items separator,✅ Completo
+Molecules,Rating,Rating.tsx,Calificación con estrellas,value onChange showValue,✅ Completo
+Molecules,Pagination,Pagination.tsx,Paginación de resultados,currentPage totalPages onPageChange,✅ Completo
+Molecules,SearchBar,SearchBar.tsx,Barra de búsqueda,value onChange placeholder,✅ Completo
+Organisms,Header,Header.tsx,Encabezado de página,logo navigation ctaText,✅ Completo
+Organisms,Hero,Hero.tsx,Sección hero principal,title subtitle primaryButton,✅ Completo
+Organisms,Footer,Footer.tsx,Pie de página,logoText links contact social,✅ Completo
+Organisms,ContactForm,ContactForm.tsx,Formulario de contacto,title services onSubmit,✅ Completo
+Organisms,Newsletter,Newsletter.tsx,Suscripción a newsletter,title description onSubmit,✅ Completo
+Organisms,Pricing,Pricing.tsx,Sección de precios,title plans onSelectPlan,✅ Completo
+Organisms,Testimonials,Testimonials.tsx,Testimonios de clientes,testimonials title variant,✅ Completo
+Organisms,FAQ,FAQ.tsx,Preguntas frecuentes,items title variant,✅ Completo
+Organisms,Statistics,Statistics.tsx,Estadísticas y métricas,statistics title variant,✅ Completo
+Organisms,Navigation,Navigation.tsx,Barra de navegación,logo items ctaText,✅ Completo
+Organisms,Sidebar,Sidebar.tsx,Barra lateral,navigation items title,✅ Completo
+Organisms,Dashboard,Dashboard.tsx,Panel de control,widgets title sidebarItems,✅ Completo
+Templates,Landing,Landing.tsx,Página de aterrizaje,headerProps heroProps sections,✅ Completo
+Templates,Dashboard,Dashboard.tsx,Template de dashboard,headerProps sidebarProps,✅ Completo
+Templates,Authentication,Authentication.tsx,Template de autenticación,title form footerText,✅ Completo
+Templates,Error,Error.tsx,Template de página de error,statusCode title message,✅ Completo
+Templates,Blog,Blog.tsx,Template de blog,children showSidebar headerTitle,✅ Completo
+Templates,Documentation,Documentation.tsx,Template de documentación,children sidebarContent,✅ Completo
+Templates,Maintenance,Maintenance.tsx,Template de mantenimiento,title message estimatedTime,✅ Completo
+Templates,Profile,Profile.tsx,Template de perfil,children showSidebar headerTitle,✅ Completo
+Templates,Settings,Settings.tsx,Template de configuración,children showSidebar headerTitle,✅ Completo
+Templates,Admin,Admin.tsx,Template de administración,children showSidebar headerTitle,✅ Completo
+Hooks,useLocalStorage,useLocalStorage.ts,Hook para localStorage,key initialValue,✅ Completo
+Hooks,useMediaQuery,useMediaQuery.ts,Hook para media queries,query,✅ Completo
+Hooks,useDebounce,useDebounce.ts,Hook para debounce,value delay,✅ Completo
+Utils,cn,cn.ts,Utilidad para clases CSS,...classes,✅ Completo

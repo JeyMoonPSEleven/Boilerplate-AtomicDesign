@@ -1,0 +1,66 @@
+/* src/design-system/atomic/molecules/Rating/Rating.module.css */
+.rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.ratingStar {
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.ratingStar.readOnly {
+    cursor: default;
+}
+
+.ratingStar:hover:not(.readOnly) {
+    transform: scale(1.1);
+}
+
+.ratingStar.small {
+    width: var(--spacing-md);
+    height: var(--spacing-md);
+}
+
+.ratingStar.medium {
+    width: var(--spacing-lg);
+    height: var(--spacing-lg);
+}
+
+.ratingStar.large {
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+}
+
+.ratingStar.filled {
+    color: var(--color-warning-400);
+}
+
+.ratingStar.empty {
+    color: var(--color-neutral-300);
+}
+
+.ratingStar.half {
+    color: var(--color-warning-400);
+    position: relative;
+}
+
+.ratingStar.half::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-neutral-300);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+}
+
+.ratingValue {
+    margin-left: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-600);
+    font-weight: var(--font-weight-medium);
+}

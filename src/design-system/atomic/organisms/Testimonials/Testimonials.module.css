@@ -1,0 +1,222 @@
+/* Testimonials.module.css */
+.testimonials {
+    padding: var(--spacing-xl) 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.subtitle {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+}
+
+.title {
+    margin-bottom: var(--spacing-sm);
+}
+
+.carouselContainer {
+    position: relative;
+}
+
+.testimonialCard {
+    position: relative;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    background: var(--color-background);
+    margin-bottom: var(--spacing-lg);
+}
+
+.quoteIcon {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    color: var(--color-primary-light);
+    opacity: 0.3;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.star {
+    width: 16px;
+    height: 16px;
+}
+
+.starFilled {
+    color: var(--color-warning);
+    fill: currentColor;
+}
+
+.starEmpty {
+    color: var(--color-border-light);
+}
+
+.content {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.caseDetails {
+    background: var(--color-primary-light);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.caseGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .caseGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.caseItem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.caseLabel {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    font-size: var(--font-size-sm);
+}
+
+.caseValue {
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+}
+
+.caseValueCompensation {
+    font-weight: 600;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.authorInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.authorName {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+}
+
+.authorRole {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.authorLocation {
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-sm);
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-background);
+    border: none;
+    border-radius: var(--border-radius-full);
+    padding: var(--spacing-sm);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.navigation:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+.navigationLeft {
+    left: -var(--spacing-lg);
+}
+
+.navigationRight {
+    right: -var(--spacing-lg);
+}
+
+.navigationIcon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-secondary);
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--border-radius-full);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.dotActive {
+    background: var(--color-primary);
+}
+
+.dotInactive {
+    background: var(--color-border-light);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.default {
+    max-width: 800px;
+    margin: 0 auto;
+}

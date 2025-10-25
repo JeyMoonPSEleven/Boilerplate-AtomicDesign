@@ -1,0 +1,233 @@
+/* src/app/DesignSystemDemo.module.css - CSS 2025 */
+
+.demoContainer {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+
+    /* Container */
+    container-type: inline-size;
+}
+
+.demoHeader {
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xl) 0;
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+    margin-bottom: var(--spacing-xl);
+
+    /* Responsive */
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.demoTitle {
+    /* Layout */
+    flex: 1;
+    min-width: 300px;
+}
+
+.demoContent {
+    /* Layout */
+    display: grid;
+    gap: var(--spacing-xl);
+
+    /* Desktop Grid - 2 columns para mejor aprovechamiento */
+    grid-template-columns: 1fr;
+}
+
+/* === RESPONSIVE GRID === */
+@media (min-width: 768px) {
+    .demoContent {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Design Tokens ocupa toda la fila */
+    .designTokensSection {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .demoContent {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Atoms y Molecules en columna 1 */
+    .atomsSection,
+    .moleculesSection {
+        grid-column: 1;
+    }
+
+    /* Organisms y Templates en columna 2 */
+    .organismsSection,
+    .templatesSection {
+        grid-column: 2;
+    }
+
+    /* Multimedia ocupa toda la fila */
+    .multimediaSection {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 1400px) {
+    .demoContent {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Design Tokens ocupa toda la fila */
+    .designTokensSection {
+        grid-column: 1 / -1;
+    }
+
+    /* Atoms en columna 1 */
+    .atomsSection {
+        grid-column: 1;
+    }
+
+    /* Molecules en columna 2 */
+    .moleculesSection {
+        grid-column: 2;
+    }
+
+    /* Organisms en columna 3 */
+    .organismsSection {
+        grid-column: 3;
+    }
+
+    /* Templates y Multimedia ocupan toda la fila */
+    .templatesSection,
+    .multimediaSection {
+        grid-column: 1 / -1;
+    }
+}
+
+/* === COMPONENT SECTIONS === */
+.componentSection {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+
+    /* Styling */
+    background-color: var(--surface-base);
+    border: var(--border-width-thin) solid var(--color-border-primary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+
+    /* Animation */
+    animation: fadeInUp var(--duration-base) var(--ease-out-cubic);
+}
+
+.componentSection:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-300);
+}
+
+.componentGrid {
+    /* Layout */
+    display: grid;
+    gap: var(--spacing-md);
+
+    /* Mobile: 1 column */
+    grid-template-columns: 1fr;
+}
+
+/* === RESPONSIVE COMPONENT GRIDS === */
+@media (min-width: 576px) {
+    .componentGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .componentGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .componentGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1400px) {
+    .componentGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === CONTAINER QUERIES === */
+@container (max-width: 600px) {
+    .demoContent {
+        grid-template-columns: 1fr;
+    }
+
+    .componentGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@container (min-width: 601px) and (max-width: 900px) {
+    .demoContent {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .componentGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@container (min-width: 901px) {
+    .demoContent {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .componentGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* === DARK MODE === */
+@media (prefers-color-scheme: dark) {
+    .componentSection {
+        background-color: var(--surface-level-1);
+        border-color: var(--color-border-secondary);
+    }
+
+    .componentSection:hover {
+        border-color: var(--color-primary-400);
+    }
+}
+
+/* === HIGH CONTRAST === */
+@media (prefers-contrast: high) {
+    .componentSection {
+        border-width: var(--border-width-medium);
+    }
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+    .componentSection {
+        animation: none;
+    }
+}

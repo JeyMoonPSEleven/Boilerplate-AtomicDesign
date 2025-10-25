@@ -1,0 +1,1022 @@
+Perfect. Ahora tengo toda la información necesaria. Voy a crear una guía COMPLETA y profesional para instalar Tailwind adaptado al sistema de tokens y Atomic Design que ya tienen. # Guía Profesional: Integración de Tailwind CSS v4 con Atomic Design y Design Tokens ## ⚠️ IMPORTANTE: Filosofía Tailwind+Atomic Design Antes de comenzar,
+es crucial entender que **Tailwind y Atomic Design no son rivales,
+sino aliados**. Tailwind es un framework utility-first que proporciona herramientas,
+mientras que Atomic Design es una metodología de composición de componentes. Combinados correctamente crean un sistema escalable y mantenible.[1][2][3][4][5][6] --- ## PARTE 1: Instalación Base de Tailwind CSS v4 ### 1.1 Instalación Inicial con pnpm ```bash # 1. Instalar Tailwind CSS v4 y dependencias pnpm add -D tailwindcss @tailwindcss/postcss postcss # 2. Instalar herramientas complementarias pnpm add -D autoprefixer # 3. Opcionalmente: plugins útiles pnpm add -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/aspect-ratio # 4. Verificar la versión npx tailwindcss --version ``` ### 1.2 Estructura de Archivos Tailwind ``` project-root/ ├── src/ │ ├── styles/ │ │ ├── globals.css # Importa Tailwind │ │ ├── tailwind-overrides.css # Customizaciones │ │ └── design-tokens.css # Tokens CSS (tu sistema actual) │ └── ... ├── tailwind.config.js # Configuración Tailwind ├── postcss.config.js # PostCSS config └── package.json ``` ### 1.3 Configuración PostCSS ```javascript // postcss.config.js
+
+export default {
+    plugins: {
+        '@tailwindcss/postcss': {}
+
+        ,
+        autoprefixer: {}
+
+        ,
+    }
+
+    ,
+}
+
+``` ### 1.4 Archivo de Estilos Principal (v4 CSS-First) ```css
+/* src/styles/globals.css */
+
+/* Importar todos los tokens CSS existentes */
+@import './design-tokens.css';
+@import './tailwind-overrides.css';
+
+/* Tailwind v4 CSS-first directive */
+@import 'tailwindcss';
+``` *** ## PARTE 2: Integración de Design Tokens Existentes con Tailwind ### 2.1 Mapping de Tokens a Tailwind Config (Estrategia Recomendada) **OPCIÓN A: Config.js tradicional (Compatible v3-v4)** ```javascript // tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+
+export default {
+    content: [ './src/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.html',
+    ],
+
+    theme: {
+
+        /* Extender el tema de Tailwind con tus tokens */
+        extend: {
+
+            /* === COLORES DESDE TUS TOKENS === */
+            colors: {
+
+                /* Colores primarios - mapeados desde --color-primary-* */
+                primary: {
+                    50: 'var(--color-primary-50)',
+                        100: 'var(--color-primary-100)',
+                        200: 'var(--color-primary-200)',
+                        300: 'var(--color-primary-300)',
+                        400: 'var(--color-primary-400)',
+                        500: 'var(--color-primary-500)',
+                        600: 'var(--color-primary-600)',
+                        700: 'var(--color-primary-700)',
+                        800: 'var(--color-primary-800)',
+                        900: 'var(--color-primary-900)',
+                }
+
+                ,
+
+                /* Colores secundarios */
+                secondary: {
+                    50: 'var(--color-secondary-50)',
+                        100: 'var(--color-secondary-100)',
+                        200: 'var(--color-secondary-200)',
+                        300: 'var(--color-secondary-300)',
+                        400: 'var(--color-secondary-400)',
+                        500: 'var(--color-secondary-500)',
+                        600: 'var(--color-secondary-600)',
+                        700: 'var(--color-secondary-700)',
+                        800: 'var(--color-secondary-800)',
+                        900: 'var(--color-secondary-900)',
+                }
+
+                ,
+
+                /* Colores semánticos */
+                success: 'var(--color-success)',
+                warning: 'var(--color-warning)',
+                danger: 'var(--color-danger)',
+                info: 'var(--color-info)',
+
+                /* Grises */
+                gray: {
+                    50: 'var(--color-gray-50)',
+                        100: 'var(--color-gray-100)',
+                        200: 'var(--color-gray-200)',
+                        300: 'var(--color-gray-300)',
+                        400: 'var(--color-gray-400)',
+                        500: 'var(--color-gray-500)',
+                        600: 'var(--color-gray-600)',
+                        700: 'var(--color-gray-700)',
+                        800: 'var(--color-gray-800)',
+                        900: 'var(--color-gray-900)',
+                }
+
+                ,
+
+                /* Colores de texto */
+                text: {
+                    primary: 'var(--color-text-primary)',
+                        secondary: 'var(--color-text-secondary)',
+                        muted: 'var(--color-text-muted)',
+                        accent: 'var(--color-text-accent)',
+                        'on-primary': 'var(--color-text-on-primary)',
+                        'on-secondary': 'var(--color-text-on-secondary)',
+                }
+
+                ,
+
+                /* Colores de fondo */
+                bg: {
+                    primary: 'var(--color-background-primary)',
+                        secondary: 'var(--color-background-secondary)',
+                        tertiary: 'var(--color-background-tertiary)',
+                        dark: 'var(--color-background-dark)',
+                        overlay: 'var(--color-background-overlay)',
+                }
+
+                ,
+
+                /* Colores de borde */
+                border: {
+                    primary: 'var(--color-border-primary)',
+                        secondary: 'var(--color-border-secondary)',
+                        light: 'var(--color-border-light)',
+                        focus: 'var(--color-border-focus)',
+                        error: 'var(--color-border-error)',
+                }
+
+                ,
+            }
+
+            ,
+
+            /* === ESPACIADO DESDE TUS TOKENS === */
+            spacing: {
+                xs: 'var(--spacing-xs)',
+                    /* 4px */
+                    sm: 'var(--spacing-sm)',
+                    /* 8px */
+                    md: 'var(--spacing-md)',
+                    /* 16px */
+                    lg: 'var(--spacing-lg)',
+                    /* 24px */
+                    xl: 'var(--spacing-xl)',
+                    /* 32px */
+                    xxl: 'var(--spacing-xxl)',
+                    /* 48px */
+                    xxxl: 'var(--spacing-xxxl)',
+                    /* 64px */
+            }
+
+            ,
+
+            /* === TIPOGRAFÍA DESDE TUS TOKENS === */
+            fontSize: {
+                xs: 'var(--font-size-xs)',
+                    sm: 'var(--font-size-sm)',
+                    base: 'var(--font-size-base)',
+                    lg: 'var(--font-size-lg)',
+                    xl: 'var(--font-size-xl)',
+                    '2xl': 'var(--font-size-2xl)',
+                    '3xl': 'var(--font-size-3xl)',
+                    '4xl': 'var(--font-size-4xl)',
+                    '5xl': 'var(--font-size-5xl)',
+                    '6xl': 'var(--font-size-6xl)',
+            }
+
+            ,
+
+            fontFamily: {
+                base: 'var(--font-family-base)',
+                    heading: 'var(--font-family-heading)',
+                    mono: 'var(--font-family-mono)',
+            }
+
+            ,
+
+            fontWeight: {
+                light: 'var(--font-weight-light)',
+                    normal: 'var(--font-weight-normal)',
+                    medium: 'var(--font-weight-medium)',
+                    semibold: 'var(--font-weight-semibold)',
+                    bold: 'var(--font-weight-bold)',
+                    extrabold: 'var(--font-weight-extrabold)',
+            }
+
+            ,
+
+            lineHeight: {
+                tight: 'var(--line-height-tight)',
+                    normal: 'var(--line-height-normal)',
+                    relaxed: 'var(--line-height-relaxed)',
+            }
+
+            ,
+
+            /* === BORDES DESDE TUS TOKENS === */
+            borderRadius: {
+                sm: 'var(--border-radius-sm)',
+                    md: 'var(--border-radius-md)',
+                    lg: 'var(--border-radius-lg)',
+                    xl: 'var(--border-radius-xl)',
+                    '2xl': 'var(--border-radius-2xl)',
+                    full: 'var(--border-radius-full)',
+            }
+
+            ,
+
+            /* === SOMBRAS DESDE TUS TOKENS === */
+            boxShadow: {
+                xs: 'var(--shadow-xs)',
+                    sm: 'var(--shadow-sm)',
+                    md: 'var(--shadow-md)',
+                    lg: 'var(--shadow-lg)',
+                    xl: 'var(--shadow-xl)',
+                    '2xl': 'var(--shadow-2xl)',
+                    inner: 'var(--shadow-inner)',
+                    focus: 'var(--shadow-focus)',
+                    none: 'none',
+            }
+
+            ,
+
+            /* === TRANSICIONES DESDE TUS TOKENS === */
+            transitionDuration: {
+                fast: 'var(--transition-fast)',
+                    base: 'var(--transition-base)',
+                    slow: 'var(--transition-slow)',
+            }
+
+            ,
+
+            /* === BREAKPOINTS PERSONALIZADOS === */
+            screens: {
+                xs: '0',
+                    sm: '576px',
+                    md: '768px',
+                    lg: '992px',
+                    xl: '1200px',
+                    '2xl': '1400px',
+            }
+
+            ,
+
+            /* === CONTENEDORES === */
+            maxWidth: {
+                sm: 'var(--container-sm)',
+                    md: 'var(--container-md)',
+                    lg: 'var(--container-lg)',
+                    xl: 'var(--container-xl)',
+                    '2xl': 'var(--container-xxl)',
+            }
+
+            ,
+        }
+
+        ,
+    }
+
+    ,
+
+    /* Plugins personalizados */
+    plugins: [ // Plugin para componentes Atomic Design
+    require('./tailwind-plugins/atomic-design.js'),
+    ],
+}
+
+``` ### 2.2 OPCIÓN B: CSS-First (Tailwind v4 Recomendado) ```css
+/* src/styles/tailwind-overrides.css */
+
+@import 'tailwindcss';
+
+/* Usar @theme para Tailwind v4 CSS-first */
+@theme {
+    /* Colores */
+    --color-primary: #2196f3;
+    --color-primary-50: var(--color-primary-50);
+    --color-primary-100: var(--color-primary-100);
+    /* ... etc */
+
+    /* Espaciado */
+    --spacing-xs: var(--spacing-xs);
+    --spacing-sm: var(--spacing-sm);
+    --spacing-md: var(--spacing-md);
+
+    /* Tipografía */
+    --font-size-xs: var(--font-size-xs);
+    --font-size-sm: var(--font-size-sm);
+    --font-size-base: var(--font-size-base);
+
+    /* Breakpoints */
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-2xl: 1400px;
+}
+
+``` *** ## PARTE 3: Configuración de Componentes Atomic Design con Tailwind ### 3.1 Plugin Personalizado para Atomic Design ```javascript // tailwind-plugins/atomic-design.js
+
+const plugin=require('tailwindcss/plugin') module.exports=plugin(function ({
+        addBase, addComponents, addUtilities, theme
+
+    }) {
+
+    /* === LAYER BASE - Elementos HTML fundamentales === */
+    addBase({
+        '@layer base': {
+            'html': {
+                scrollBehavior: 'smooth',
+                scrollPaddingTop: theme('spacing.lg'),
+            }
+
+            ,
+            'body': {
+                fontFamily: theme('fontFamily.base'),
+                fontSize: theme('fontSize.base'),
+                lineHeight: theme('lineHeight.normal'),
+                color: theme('colors.text.primary'),
+                backgroundColor: theme('colors.bg.primary'),
+            }
+
+            ,
+            'a': {
+                color: theme('colors.text.accent'),
+                textDecoration: 'none',
+                transition: theme('transitionDuration.base'),
+            }
+
+            ,
+            'a:hover': {
+                color: theme('colors.primary.700'),
+            }
+
+            ,
+            'h1, h2, h3, h4, h5, h6': {
+                fontFamily: theme('fontFamily.heading'),
+                fontWeight: theme('fontWeight.semibold'),
+                lineHeight: theme('lineHeight.tight'),
+            }
+
+            ,
+        }
+    })
+
+/* === ATOMS - Componentes base reutilizables === */
+addComponents({
+    '@layer components': {
+
+        /* Button Atom */
+        '.btn': {
+
+            '@apply': 'inline-flex items-center justify-center px-lg py-md rounded-md font-medium transition-all cursor-pointer',
+            '&:focus-visible': {
+                '@apply': 'outline-2 outline-offset-2',
+                outlineColor: theme('colors.border.focus'),
+            }
+
+            ,
+        }
+
+        ,
+
+        '.btn-primary': {
+            '@apply': 'btn bg-primary-500 text-text-on-primary hover:bg-primary-600 active:bg-primary-700',
+        }
+
+        ,
+
+        '.btn-secondary': {
+            '@apply': 'btn bg-secondary-500 text-text-on-secondary hover:bg-secondary-600',
+        }
+
+        ,
+
+        '.btn-outline': {
+            '@apply': 'btn bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-alpha-10',
+        }
+
+        ,
+
+        '.btn-ghost': {
+            '@apply': 'btn bg-transparent text-primary-500 hover:bg-primary-alpha-10',
+        }
+
+        ,
+
+        /* Input Atom */
+        '.input': {
+
+            '@apply': 'w-full px-md py-sm rounded-md border border-border-primary bg-bg-primary font-base text-text-primary transition-all',
+            '&:focus': {
+                '@apply': 'border-border-focus ring-2 ring-opacity-10',
+                ringColor: theme('colors.primary.500'),
+            }
+
+            ,
+            '&:disabled': {
+                '@apply': 'bg-gray-100 text-text-muted cursor-not-allowed opacity-60',
+            }
+
+            ,
+        }
+
+        ,
+
+        /* Card Atom */
+        '.card': {
+            '@apply': 'rounded-lg border border-border-light bg-bg-primary shadow-sm p-lg transition-all',
+        }
+
+        ,
+
+        '.card:hover': {
+            '@apply': 'shadow-md',
+        }
+
+        ,
+
+        /* Badge Atom */
+        '.badge': {
+            '@apply': 'inline-flex items-center px-sm py-xs rounded-full text-xs font-semibold',
+        }
+
+        ,
+
+        '.badge-primary': {
+            '@apply': 'badge bg-primary-alpha-20 text-primary-700',
+        }
+
+        ,
+
+        '.badge-success': {
+            '@apply': 'badge bg-green-100 text-green-800',
+        }
+
+        ,
+
+        '.badge-warning': {
+            '@apply': 'badge bg-yellow-100 text-yellow-800',
+        }
+
+        ,
+
+        '.badge-danger': {
+            '@apply': 'badge bg-red-100 text-red-800',
+        }
+
+        ,
+    }
+})
+
+/* === UTILIDADES CUSTOM === */
+addUtilities({
+    '@layer utilities': {
+
+        /* Flex utilities */
+        '.flex-center': {
+            '@apply': 'flex items-center justify-center',
+        }
+
+        ,
+
+        '.flex-between': {
+            '@apply': 'flex items-center justify-between',
+        }
+
+        ,
+
+        /* Text utilities */
+        '.truncate-lines-2': {
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitLineClamp: '2',
+            WebkitBoxOrient: 'vertical',
+        }
+
+        ,
+
+        '.truncate-lines-3': {
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitLineClamp: '3',
+            WebkitBoxOrient: 'vertical',
+        }
+
+        ,
+
+        /* Aspect ratios */
+        '.aspect-video': {
+            '@apply': 'aspect-video',
+        }
+
+        ,
+
+        '.aspect-square': {
+            '@apply': 'aspect-square',
+        }
+
+        ,
+
+        /* Container */
+        '.container-fluid': {
+            '@apply': 'w-full px-md mx-auto',
+        }
+
+        ,
+    }
+})
+}
+
+,
+
+{
+theme: {
+    /* Extensiones de tema si es necesario */
+}
+
+,
+}) ``` ### 3.2 Estructura de Componentes Atomic Design+Tailwind ```typescript // src/components/atoms/Button/Button.tsx
+
+import React from 'react'
+
+import type {
+    ButtonProps
+}
+
+from './Button.types'
+
+/**
+ * Botón Atom con Tailwind + Atomic Design
+ * Totalmente personalizable mediante clases Tailwind
+ */
+export const Button=React.memo<ButtonProps>(({
+        variant='primary',
+        size='md',
+        fullWidth=false,
+        isLoading=false,
+        icon,
+        children,
+        className='',
+        disabled,
+        ...restProps
+
+    })=> {
+
+    /* Mapear variantes a clases Tailwind */
+    const variantClasses= {
+        primary: 'btn-primary',
+        secondary: 'btn-secondary',
+        outline: 'btn-outline',
+        ghost: 'btn-ghost',
+    }
+
+    /* Mapear tamaños */
+    const sizeClasses= {
+        sm: 'px-sm py-xs text-sm',
+        md: 'px-md py-sm text-base',
+        lg: 'px-lg py-md text-lg',
+        xl: 'px-xl py-lg text-xl',
+    }
+
+    const combinedClasses=[ 'btn',
+    variantClasses[variant],
+    sizeClasses[size],
+    fullWidth && 'w-full',
+    isLoading && 'opacity-70 cursor-not-allowed',
+    className].filter(Boolean).join(' ') return (<button className= {
+            combinedClasses
+        }
+
+        disabled= {
+            disabled || isLoading
+        }
+
+        aria-busy= {
+            isLoading
+        }
+
+            {
+            ...restProps
+        }
+
+        > {
+            isLoading ? (<span className="inline-block animate-spin mr-sm" >⏳</span>) : (<> {
+                    icon && <span className="mr-sm flex-shrink-0" > {
+                        icon
+                    }
+
+                    </span>
+                }
+
+                <span> {
+                    children
+                }
+
+                </span> </>)
+        }
+
+        </button>)
+}) Button.displayName='Button'
+``` *** ## PARTE 4: Integración TypeScript+Tailwind ### 4.1 Tipos para Tailwind Classes ```typescript // src/types/tailwind.ts
+
+/**
+ * Tipos para mantener type-safety con Tailwind
+ */
+
+export type ButtonVariant='primary' | 'secondary' | 'outline' | 'ghost'
+export type ButtonSize='sm' | 'md' | 'lg' | 'xl'
+export type ColorVariant='primary' | 'secondary' | 'success' | 'warning' | 'danger'
+
+export interface TailwindClassMap {
+    [key: string]: string
+}
+
+/**
+ * Generar clases con type-safety
+ */
+export const createButtonClasses=(variant: ButtonVariant,
+    size: ButtonSize,
+    fullWidth: boolean): string=> {
+    const classes: string[]=['btn'] // Agregar variante
+
+    classes.push(`btn-$ {
+            variant
+        }
+
+        `) // Agregar tamaño
+
+    const sizeMap: Record<ButtonSize,
+    string>= {
+        sm: 'px-sm py-xs text-sm',
+            md: 'px-md py-sm text-base',
+            lg: 'px-lg py-md text-lg',
+            xl: 'px-xl py-lg text-xl',
+    }
+
+    classes.push(sizeMap[size]) // Ancho completo
+
+    if (fullWidth) {
+        classes.push('w-full')
+    }
+
+    return classes.join(' ')
+}
+
+``` ### 4.2 Utility para combinar clases (cn) ```typescript // src/utils/cn.ts
+
+/**
+ * Combinar clases Tailwind de forma type-safe
+ */
+export function cn(...classes: (string | undefined | null | false)[]): string {
+    return classes .filter((cls): cls is string=> Boolean(cls)) .join(' ')
+}
+
+// Uso en componentes
+import {
+    cn
+}
+
+from '@/utils/cn'
+
+export const Button: React.FC<ButtonProps>=({
+    variant,
+    size,
+    className,
+    ...props
+
+})=> {
+    return (<button className= {
+
+            cn('btn',
+                `btn-$ {
+                    variant
+                }
+
+                `,
+                `size-$ {
+                    size
+                }
+
+                `,
+                className)
+        }
+
+            {
+            ...props
+        }
+
+        />)
+}
+
+``` *** ## PARTE 5: Configuración para Dark Mode ### 5.1 Configurar Dark Mode en Tailwind ```javascript // tailwind.config.js
+
+export default {
+    // ...
+    darkMode: 'class',
+    // o 'media' para seguir preferencia del sistema
+
+    theme: {
+        extend: {
+            colors: {
+                primary: {
+                    50: 'var(--color-primary-50)',
+                        // ... etc
+                }
+
+                ,
+            }
+
+            ,
+        }
+
+        ,
+    }
+
+    ,
+    // ...
+}
+
+``` ### 5.2 Actualizar variables.css para Dark Mode ```css
+/* src/styles/design-tokens.css */
+
+:root {
+    /* === Colores modo claro === */
+    --color-primary-500: #2196f3;
+    --color-text-primary: #212121;
+    --color-background-primary: #ffffff;
+    /* ... etc */
+}
+
+/* Dark mode - agregar después de :root */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary-500: #64b5f6;
+        --color-text-primary: #ffffff;
+        --color-background-primary: #121212;
+        /* ... etc */
+    }
+}
+
+/* O usar clase explícita */
+html.dark {
+    --color-primary-500: #64b5f6;
+    --color-text-primary: #ffffff;
+    --color-background-primary: #121212;
+    /* ... etc */
+}
+
+``` ### 5.3 Implementar Theme Provider ```typescript // src/contexts/ThemeContext.tsx
+
+import React,
+{
+createContext,
+useContext,
+useEffect,
+useState
+}
+
+from 'react'
+
+type Theme='light' | 'dark' | 'system'
+
+interface ThemeContextType {
+    theme: Theme setTheme: (theme: Theme)=> void resolvedTheme: 'light' | 'dark'
+}
+
+const ThemeContext=createContext<ThemeContextType | undefined>(undefined) export const ThemeProvider: React.FC< {
+    children: React.ReactNode
+}
+
+>=({
+    children
+
+})=> {
+
+    const [theme,
+    setTheme]=useState<Theme>('system') const [resolvedTheme,
+    setResolvedTheme]=useState<'light' | 'dark'>('light') useEffect(()=> {
+            const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches const dark=theme==='dark' || (theme==='system' && prefersDark) setResolvedTheme(dark ? 'dark' : 'light') document.documentElement.classList.toggle('dark', dark)
+        }
+
+        , [theme]) return (<ThemeContext.Provider value= {
+                {
+                theme, setTheme, resolvedTheme
+            }
+        }
+
+        > {
+            children
+        }
+
+        </ThemeContext.Provider>)
+}
+
+export const useTheme=()=> {
+    const context=useContext(ThemeContext) if ( !context) {
+        throw new Error('useTheme must be used within ThemeProvider')
+    }
+
+    return context
+}
+
+``` *** ## PARTE 6: Indicaciones para Cursor IDE ```markdown # .cursorrules - Tailwind+Atomic Design ## FILOSOFÍA ### Objetivo Crear componentes Atomic Design usando Tailwind CSS que sean: - 100% personalizables mediante tokens CSS - Responsive mobile-first - Type-safe con TypeScript - Mantenibles y escalables ### Reglas Fundamentales ## CUANDO USAR TAILWIND VS CSS MODULES ### Usar Tailwind para: - Componentes simples (Atoms, Molecules básicas) - Layouts y composición - Responsive design - Estados interactivos rápidos ### Usar CSS Modules para: - Animaciones complejas - Estilos muy específicos del componente - Efectos avanzados que requieren @keyframes ## ESTRUCTURA DE COMPONENTES ### Atom con Tailwind ``` import {
+    cn
+}
+
+from '@/utils/cn'
+
+interface ButtonProps {
+    variant?: 'primary' | 'secondary' | 'ghost'
+        size?: 'sm' | 'md' | 'lg'
+        children: React.ReactNode className?: string
+}
+
+export const Button: React.FC<ButtonProps>=({
+    variant='primary',
+    size='md',
+    children,
+    className,
+    ...props
+
+})=> {
+    return (<button className= {
+
+            cn('btn',
+                `btn-$ {
+                    variant
+                }
+
+                `,
+                `size-$ {
+                    size
+                }
+
+                `,
+                className)
+        }
+
+            {
+            ...props
+        }
+
+        > {
+            children
+        }
+
+        </button>)
+}
+
+``` ## USAR TOKENS CSS EN TAILWIND Todos los valores deben venir de tokens: - Colores: bg-primary,
+text-secondary,
+border-border-focus - Espaciado: p-md,
+m-lg,
+gap-sm - Tipografía: text-base,
+font-semibold,
+leading-normal - Bordes: rounded-md,
+shadow-lg - Transiciones: transition-all,
+duration-base ## RESPONSIVE MOBILE-FIRST ``` // ✅ CORRECTO - mobile first
+
+className= {
+    cn('px-sm py-xs text-sm',
+        'md:px-md md:py-sm md:text-base',
+        'lg:px-lg lg:py-md lg:text-lg'
+    )
+}
+
+// ❌ INCORRECTO - desktop first
+className="px-lg py-md text-lg md:px-md md:py-sm md:text-base"
+
+``` ## PERSONALIZACIÓN CON CLASES Exponer className para personalización: ``` export const Card: React.FC<CardProps>=({
+    children,
+    className
+
+})=>(<div className= {
+        cn('card p-lg rounded-lg shadow-md', className)
+    }
+
+    > {
+        children
+    }
+
+    </div>) ``` ## TYPE-SAFETY Usar type-safe utilities: ``` import {
+    cn,
+    createButtonClasses
+}
+
+from '@/utils'
+
+const classes=createButtonClasses('primary', 'md', false) ``` ## DARK MODE Siempre incluir soporte: ``` className= {
+    cn('bg-bg-primary text-text-primary',
+        'dark:bg-gray-900 dark:text-white'
+    )
+}
+
+``` ## ACCESIBILIDAD - Mantener focus-visible - Usar semantic HTML - ARIA attributes cuando sea necesario - Text contrast ratio mínimo WCAG AA ## PERFORMANCE - No generar clases dinámicamente en runtime - Usar @apply en Tailwind config para componentes - Evitar className stringificado complejo ## TESTING Mantener clases predecibles para testing: ``` <button className= {
+    cn('btn', `btn-$ {
+            variant
+        }
+
+        `)
+}
+
+>Click me </button>``` ## CUANDO AGREGAR COMPONENTES Solo crear componentes @layer si: 1. Se reutilizan más de 3 veces 2. Necesitan estados complejos 3. Son atoms del Atomic Design Sino, usar composición directa en JSX. ``` *** ## PARTE 7: Scripts en package.json ```json {
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+
+        "style:watch": "tailwindcss -i ./src/styles/globals.css -o ./dist/output.css --watch",
+        "style:build": "tailwindcss -i ./src/styles/globals.css -o ./dist/output.css --minify",
+
+        "lint": "eslint . --ext ts,tsx",
+        "lint:fix": "pnpm lint --fix",
+        "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+
+        "type-check": "tsc --noEmit",
+            "validate": "pnpm type-check && pnpm lint && pnpm format"
+    }
+}
+
+``` *** ## PARTE 8: Ejemplo Completo de Molécula ```typescript // src/components/molecules/SearchBar/SearchBar.tsx
+
+import React,
+{
+useState
+}
+
+from 'react'
+
+import {
+    Button
+}
+
+from '@/components/atoms/Button'
+
+import {
+    Input
+}
+
+from '@/components/atoms/Input'
+
+import {
+    cn
+}
+
+from '@/utils/cn'
+
+interface SearchBarProps {
+    onSearch: (query: string)=> void placeholder?: string className?: string
+}
+
+export const SearchBar: React.FC<SearchBarProps>=({
+
+    onSearch,
+    placeholder='Buscar...',
+    className,
+})=> {
+
+    const [query,
+    setQuery]=useState('') const handleSubmit=(e: React.FormEvent)=> {
+        e.preventDefault() onSearch(query)
+    }
+
+    return (<form onSubmit= {
+            handleSubmit
+        }
+
+        className= {
+            cn('flex gap-sm items-center',
+                'md:flex-row md:gap-md',
+                className)
+        }
+
+        role="search"
+        > <Input type="search"
+
+        value= {
+            query
+        }
+
+        onChange= {
+            (e)=> setQuery(e.target.value)
+        }
+
+        placeholder= {
+            placeholder
+        }
+
+        className="flex-1"
+        aria-label="Search input"
+        /> <Button type="submit"
+        variant="primary"
+        size="md"
+        aria-label="Submit search"
+        > Buscar </Button> </form>)
+}
+
+SearchBar.displayName='SearchBar'
+``` *** ## Checklist de Instalación ✅ ```markdown # Checklist Tailwind+Atomic Design - [] Instalar Tailwind con `pnpm add -D tailwindcss @tailwindcss/postcss postcss` - [] Crear `tailwind.config.js` con tokens mapeados - [] Crear `postcss.config.js` - [] Actualizar `src/styles/globals.css` con `@import 'tailwindcss' ` - [] Mapear tokens CSS a Tailwind theme extend - [] Crear plugin de componentes Atomic en Tailwind - [] Instalar utility `cn()` para combinar clases - [] Configurar TypeScript para type-safe Tailwind - [] Implementar ThemeProvider para dark mode - [] Actualizar `.cursorrules` con indicaciones - [] Crear ejemplo de Button+Input componentes - [] Validar que los tokens se cargan correctamente - [] Testar dark mode - [] Testar responsive en todos los breakpoints - [] Documentar patrones en README ``` *** ## Conclusión: Tailwind+Atomic Design=⚡ Superpotencia Con esta configuración logras: ✅ **Tailwind** proporciona utilidades y velocidad ✅ **Design Tokens** garantizan consistencia ✅ **Atomic Design** asegura escalabilidad ✅ **TypeScript** previene errores ✅ **pnpm** optimiza dependencias ✅ **Dark Mode** incluido desde el inicio Tu boilerplate es ahora **profesional, moderno y listo para múltiples proyectos**.[7][8][9][2][3][5][1] [1](https: //portfolio.nicolabs.co.uk/integrating-design-tokens-with-tailwind-css/)
+    [2](https: //dev.to/zhangzewei/use-tailwind-within-atomic-design-methodology-1bi8)
+        [3](https: //dev.to/annwebdotdev/syncing-design-tokens-with-tailwind-css-theme-4d4d)
+            [4](https: //github.com/tailwindlabs/tailwindcss/discussions/15195)
+                [5](https: //dev.to/wearethreebears/exploring-typesafe-design-tokens-in-tailwind-4-372d)
+                    [6](https: //www.youtube.com/watch?v=MemImJ-ptzs)
+                        [7](https: //tailwindcss.com/docs/adding-custom-styles)
+                            [8](https: //v3.tailwindcss.com/docs/configuration)
+                                [9](https: //codeparrot.ai/blogs/nextjs-and-tailwind-css-2025-guide-setup-tips-and-best-practices)
+                                    [10](https: //ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/127092835/e215fc28-8b13-436a-a611-ea678f595fce/variables.css)
+                                        [11](https: //ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/127092835/1fbb4040-69c7-4bc8-9dc3-7c75f3e5f3bb/global.css)
+                                            [12](https: //www.youtube.com/watch?v=6biMWgD6_JY)
+                                                [13](https: //www.codecademy.com/article/how-to-customize-and-configure-tailwind-css-a-beginner-guide)
+                                                    [14](https: //tailgrids.com/blog/learn-tailwind-css-customization-and-extension)
+                                                        [15](https: //github.com/tailwindlabs/tailwindcss/discussions/17168)
+                                                            [16](https: //www.youtube.com/watch?v=bupetqS1SMU)
+                                                                [17](https: //www.reddit.com/r/DesignSystems/comments/1cne2is/using_tokens_in_tailwind/)
+                                                                    [18](https: //dev.to/efkumah/ultimate-guide-to-building-responsive-ui-elements-with-tailwind-css-13aj)
+                                                                        [19](https: //www.reddit.com/r/tailwindcss/comments/1i9e7k2/solution_tailwind_v4_missing_tailwindconfigjs/)
+                                                                            [20](https: //www.reddit.com/r/tailwindcss/comments/1iw3ffj/design_tokens_into_tailwind_v3_v4_config/)
+                                                                                [21](https: //css-tricks.com/on-auto-generated-atomic-css/)
+                                                                                    [22](https: //stackoverflow.com/questions/79383758/how-to-setting-tailwind-css-v4-global-class)

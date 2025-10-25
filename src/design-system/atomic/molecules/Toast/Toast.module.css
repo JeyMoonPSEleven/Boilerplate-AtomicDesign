@@ -1,0 +1,163 @@
+/* src/design-system/atomic/molecules/Toast/Toast.module.css */
+.toast {
+    position: fixed;
+    z-index: var(--z-index-modal);
+    max-width: 400px;
+    width: 100%;
+    background-color: var(--color-background-body);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+}
+
+/* Positions */
+.top-right {
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+}
+
+.top-left {
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+}
+
+.bottom-right {
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+}
+
+.bottom-left {
+    bottom: var(--spacing-md);
+    left: var(--spacing-md);
+}
+
+.top-center {
+    top: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bottom-center {
+    bottom: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Content */
+.toastContent {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+}
+
+.iconContainer {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--border-radius-circle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.textContainer {
+    flex: 1;
+    min-width: 0;
+}
+
+.title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-default);
+    margin: 0 0 var(--spacing-xs) 0;
+    line-height: var(--line-height-heading);
+}
+
+.message {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: var(--line-height-base);
+}
+
+.closeButton {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-muted);
+    transition: var(--transition-base);
+}
+
+.closeButton:hover {
+    background-color: var(--color-background-light);
+    color: var(--color-text-default);
+}
+
+.closeButton:focus {
+    outline: none;
+    box-shadow: var(--box-shadow-focus);
+}
+
+/* Variants */
+.success .iconContainer {
+    background-color: var(--color-success);
+    color: var(--color-text-on-success);
+}
+
+.danger .iconContainer {
+    background-color: var(--color-danger);
+    color: var(--color-text-on-danger);
+}
+
+.warning .iconContainer {
+    background-color: var(--color-warning);
+    color: var(--color-text-on-warning);
+}
+
+.info .iconContainer {
+    background-color: var(--color-info);
+    color: var(--color-text-on-info);
+}
+
+/* Progress bar */
+.progressBar {
+    height: 3px;
+    background-color: var(--color-background-light);
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: var(--color-primary);
+    animation: toastProgress linear forwards;
+}
+
+@keyframes toastProgress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .toast {
+        max-width: calc(100vw - var(--spacing-lg));
+    }
+
+    .top-center,
+    .bottom-center {
+        left: var(--spacing-md);
+        right: var(--spacing-md);
+        transform: none;
+    }
+}

@@ -1,0 +1,146 @@
+/* Switch/Switch.module.css */
+.switchGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.switchContainer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.switchContainer.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.switch.disabled {
+    cursor: not-allowed;
+}
+
+.switchTrack {
+    position: relative;
+    background-color: var(--color-neutral-300);
+    border-radius: 9999px;
+    transition: var(--transition-fast);
+    border: 2px solid transparent;
+}
+
+.switchTrack.checked {
+    background-color: var(--color-primary-500);
+}
+
+.switchTrack.error {
+    background-color: var(--color-danger-500);
+}
+
+.switchTrack.small {
+    width: 2rem;
+    height: 1rem;
+}
+
+.switchTrack.medium {
+    width: 2.5rem;
+    height: 1.25rem;
+}
+
+.switchTrack.large {
+    width: 3rem;
+    height: 1.5rem;
+}
+
+.switchThumb {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-white);
+    border-radius: 50%;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.switchThumb.small {
+    width: 0.75rem;
+    height: 0.75rem;
+    left: 0.125rem;
+}
+
+.switchThumb.medium {
+    width: 1rem;
+    height: 1rem;
+    left: 0.125rem;
+}
+
+.switchThumb.large {
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 0.125rem;
+}
+
+.switchThumb.checked.small {
+    left: 1rem;
+}
+
+.switchThumb.checked.medium {
+    left: 1.25rem;
+}
+
+.switchThumb.checked.large {
+    left: 1.5rem;
+}
+
+.switchInput {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switchInput:focus+.switchTrack {
+    box-shadow: 0 0 0 3px var(--color-primary-100);
+}
+
+.switchLabel {
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-700);
+    cursor: pointer;
+    user-select: none;
+    flex: 1;
+}
+
+.switchLabel.disabled {
+    cursor: not-allowed;
+    color: var(--color-neutral-400);
+}
+
+.switchLabel.error {
+    color: var(--color-danger-600);
+}
+
+.switchLabel.small {
+    font-size: var(--font-size-sm);
+}
+
+.switchLabel.large {
+    font-size: var(--font-size-lg);
+}
+
+.helperText {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-500);
+    margin-top: var(--spacing-xs);
+}
+
+.helperText.error {
+    color: var(--color-danger-600);
+}

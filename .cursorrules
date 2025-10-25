@@ -1,0 +1,502 @@
+# .cursorrules - Configuración para Código de Máxima Calidad con Tailwind CSS v4
+
+## PRINCIPIOS FUNDAMENTALES
+
+### Objetivo Principal
+Crear componentes ULTRA REUTILIZABLES que puedan funcionar en múltiples proyectos sin modificaciones. Cada componente debe ser una pieza de Lego perfecta: funcional por sí mismo pero combinable con otros.
+
+### Filosofía de Código
+- CLARIDAD sobre brevedad
+- COMPOSICIÓN sobre configuración
+- TIPADO EXPLÍCITO siempre
+- REUTILIZACIÓN como prioridad máxima
+- PERSONALIZACIÓN sin modificar código interno
+- TAILWIND + ATOMIC DESIGN como metodología principal
+
+## TAILWIND CSS v4 + ATOMIC DESIGN
+
+### Reglas Estrictas
+- NUNCA usar `any` - usar `unknown` cuando no conozcas el tipo
+- Tipos explícitos para TODAS las funciones públicas
+- Usar utility types: Partial, Pick, Omit, Record, ReturnType
+- Interfaces para props, types para unions y primitivos
+- Generics para componentes verdaderamente reutilizables
+- SIEMPRE usar design tokens en lugar de valores hardcodeados
+
+### Nomenclatura de Tipos
+```
+// Props de componentes: NombreComponenteProps
+interface ButtonProps { }
+
+// Tipos de datos: sustantivo descriptivo
+type User = { }
+type UserRole = 'admin' | 'user' | 'guest'
+
+// Utility types: descriptivo
+type PartialUser = Partial<User>
+type UserWithoutId = Omit<User, 'id'>
+```
+
+## COMPONENTES REACT + TAILWIND
+
+### Patrón de Componente Átomo Perfecto
+```
+// 1. Tipos en archivo separado (Button.types.ts)
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  fullWidth?: boolean
+  isLoading?: boolean
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
+  children: React.ReactNode
+}
+
+// 2. Componente (Button.tsx)
+import React from 'react'
+import { type ButtonProps } from './Button.types'
+import { cn, createButtonClasses } from '../../../utils/cn'
+
+export const Button = React.memo<ButtonProps>(({
+  variant = 'primary',
+  size = 'md',
+  fullWidth = false,
+  isLoading = false,
+  leftIcon,
+  rightIcon,
+  children,
+  className,
+  disabled,
+  ...restProps
+}) => {
+  const buttonClasses = createButtonClasses(
+    variant,
+    size,
+    fullWidth,
+    isLoading,
+    className
+  )
+
+  return (
+    <button
+      className={buttonClasses}
+      disabled={disabled || isLoading}
+      aria-busy={isLoading}
+      {...restProps}
+    >
+      {isLoading ? (
+        <span className="spinner mr-sm" role="status" aria-label="Cargando" />
+      ) : (
+        <>
+          {leftIcon && <span className="mr-sm flex-shrink-0">{leftIcon}</span>}
+          <span className="flex items-center justify-center gap-xs">{children}</span>
+          {rightIcon && <span className="ml-sm flex-shrink-0">{rightIcon}</span>}
+        </>
+      )}
+    </button>
+  )
+})
+
+Button.displayName = 'Button'
+
+// 3. Exportación limpia (index.ts)
+export { Button } from './Button'
+export type { ButtonProps } from './Button.types'
+```
+
+## CUANDO USAR TAILWIND VS CSS MODULES
+
+### Usar Tailwind para:
+- Componentes simples (Atoms, Molecules básicas)
+- Layouts y composición
+- Responsive design
+- Estados interactivos rápidos
+- Utilidades comunes
+
+### Usar CSS Modules para:
+- Animaciones complejas
+- Estilos muy específicos del componente
+- Efectos avanzados que requieren @keyframes
+- Componentes con lógica CSS compleja
+
+## DESIGN TOKENS EN TAILWIND
+
+### Usar SIEMPRE tokens CSS
+```tsx
+// ✅ CORRECTO - Usar tokens
+className="bg-primary-500 text-text-on-primary border-border-primary"
+
+// ❌ INCORRECTO - Valores hardcodeados
+className="bg-blue-500 text-white border-gray-300"
+```
+
+### Mapeo de tokens
+```css
+/* En variables.css */
+:root {
+  --color-primary-500: #2196f3;
+  --spacing-md: 16px;
+  --font-size-base: 1rem;
+}
+
+/* En tailwind.config.js */
+colors: {
+  primary: {
+    500: 'var(--color-primary-500)',
+  }
+}
+```
+
+## RESPONSIVE MOBILE-FIRST
+
+### Patrón correcto
+```tsx
+// ✅ CORRECTO - mobile first
+className={cn(
+  'px-sm py-xs text-sm',           // Mobile
+  'md:px-md md:py-sm md:text-base', // Tablet
+  'lg:px-lg lg:py-md lg:text-lg'   // Desktop
+)}
+
+// ❌ INCORRECTO - desktop first
+className="px-lg py-md text-lg md:px-md md:py-sm md:text-base"
+```
+
+### Utilidades responsive
+```tsx
+import { createResponsiveClasses } from '@/design-system/utils/cn'
+
+const classes = createResponsiveClasses(
+  'text-sm',      // mobile
+  'text-base',    // tablet
+  'text-lg',      // desktop
+  'text-xl',      // wide
+  'text-2xl'      // ultra
+)
+```
+
+## PERSONALIZACIÓN CON CLASES
+
+### Exponer className para personalización
+```tsx
+export const Card: React.FC<CardProps> = ({
+  children,
+  className,
+  variant = 'default'
+}) => {
+  const baseClasses = 'card p-lg rounded-lg shadow-md'
+  const variantClasses = {
+    default: '',
+    elevated: 'shadow-lg hover:shadow-xl',
+    outlined: 'border-2 border-border-primary'
+  }
+  
+  return (
+    <div className={cn(baseClasses, variantClasses[variant], className)}>
+      {children}
+    </div>
+  )
+}
+```
+
+## TYPE-SAFETY CON TAILWIND
+
+### Usar utilidades type-safe
+```tsx
+import { cn, createButtonClasses } from '@/design-system/utils/cn'
+
+// Generar clases con type-safety
+const classes = createButtonClasses('primary', 'md', false, false)
+
+// Combinar clases
+const combinedClasses = cn(
+  'btn',
+  `btn-${variant}`,
+  `size-${size}`,
+  className
+)
+```
+
+## DARK MODE
+
+### Siempre incluir soporte
+```tsx
+// Usar clases dark: automáticamente
+className={cn(
+  'bg-bg-primary text-text-primary',
+  'dark:bg-gray-900 dark:text-white'
+)}
+
+// O usar ThemeProvider
+const { resolvedTheme } = useTheme()
+const isDark = resolvedTheme === 'dark'
+```
+
+### ThemeProvider
+```tsx
+import { ThemeProvider } from '@/design-system/contexts/ThemeContext'
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="system" storageKey="app-theme">
+      <YourApp />
+    </ThemeProvider>
+  )
+}
+```
+
+## ACCESIBILIDAD
+
+### Reglas obligatorias
+- Mantener focus-visible en todos los componentes interactivos
+- Usar semantic HTML apropiado
+- ARIA attributes cuando sea necesario
+- Text contrast ratio mínimo WCAG AA
+- Navegación por teclado funcional
+
+### Ejemplo de accesibilidad
+```tsx
+<button
+  className="btn btn-primary focus-ring"
+  aria-label="Cerrar modal"
+  aria-expanded={isOpen}
+  aria-controls="modal-content"
+>
+  <span className="sr-only">Cerrar</span>
+  <Icon name="close" />
+</button>
+```
+
+## PERFORMANCE
+
+### Optimizaciones obligatorias
+- No generar clases dinámicamente en runtime
+- Usar @apply en Tailwind config para componentes comunes
+- Evitar className stringificado complejo
+- Usar React.memo para componentes que reciben props estables
+- Lazy loading para componentes pesados
+
+### Memoization inteligente
+```tsx
+export const Button = React.memo<ButtonProps>(({ ... }) => {
+  // Componente memoizado
+})
+
+// Comparador personalizado si es necesario
+export const Button = React.memo<ButtonProps>(({ ... }) => {
+  // Componente
+}, (prevProps, nextProps) => {
+  return prevProps.variant === nextProps.variant &&
+         prevProps.size === nextProps.size
+})
+```
+
+## TESTING
+
+### Mantener clases predecibles
+```tsx
+// ✅ CORRECTO - Clases predecibles
+<button className={cn('btn', `btn-${variant}`)}>
+  Click me
+</button>
+
+// Test
+expect(screen.getByRole('button')).toHaveClass('btn', 'btn-primary')
+```
+
+### Tests de accesibilidad
+```tsx
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+test('button is accessible', async () => {
+  render(<Button>Click me</Button>)
+  
+  const button = screen.getByRole('button')
+  expect(button).toBeInTheDocument()
+  
+  await userEvent.click(button)
+  // Verificar comportamiento
+})
+```
+
+## CUANDO AGREGAR COMPONENTES
+
+### Solo crear componentes @layer si:
+1. Se reutilizan más de 3 veces
+2. Necesitan estados complejos
+3. Son atoms del Atomic Design
+4. Requieren lógica CSS específica
+
+### Sino, usar composición directa en JSX
+```tsx
+// ✅ CORRECTO - Composición simple
+<div className="flex items-center gap-sm p-md rounded-lg border">
+  <Icon name="info" />
+  <span>Mensaje informativo</span>
+</div>
+
+// ❌ INCORRECTO - Componente innecesario
+<InfoMessage icon="info" message="Mensaje informativo" />
+```
+
+## ESTRUCTURA DE ARCHIVOS
+
+### Organización Atómica
+```
+ComponentName/
+├── index.ts                 # Exportación limpia
+├── ComponentName.tsx       # Componente principal
+├── ComponentName.types.ts  # Tipos separados
+└── ComponentName.test.tsx  # Tests
+```
+
+### Para componentes con CSS Modules
+```
+ComponentName/
+├── index.ts                 # Exportación limpia
+├── ComponentName.tsx       # Componente principal
+├── ComponentName.module.css # Estilos específicos
+├── ComponentName.types.ts  # Tipos separados
+└── ComponentName.test.tsx  # Tests
+```
+
+## REGLAS ESPECÍFICAS TAILWIND
+
+1. **SIEMPRE** usar design tokens en lugar de valores hardcodeados
+2. **SIEMPRE** usar mobile-first approach
+3. **SIEMPRE** usar `cn()` para combinar clases
+4. **SIEMPRE** usar `createButtonClasses()` para componentes comunes
+5. **SIEMPRE** incluir soporte para dark mode
+6. **SIEMPRE** usar `React.memo` para componentes atómicos
+7. **SIEMPRE** incluir `displayName` para debugging
+8. **SIEMPRE** incluir tests de accesibilidad
+9. **SIEMPRE** documentar con JSDoc
+10. **NUNCA** modificar props directamente
+11. **NUNCA** usar `any` - siempre tipar explícitamente
+12. **NUNCA** crear componentes innecesarios
+
+## COMANDOS ÚTILES
+
+```bash
+# Desarrollo
+pnpm dev
+
+# Build
+pnpm build
+
+# Testing
+pnpm test
+pnpm test:ui
+pnpm test:coverage
+
+# Linting
+pnpm lint
+pnpm lint:fix
+
+# Formateo
+pnpm format
+pnpm format:check
+
+# Tailwind CSS
+pnpm style:watch
+pnpm style:build
+
+# Validación completa
+pnpm validate
+```
+
+## EJEMPLOS DE USO
+
+### Componente Atom con Tailwind
+```tsx
+import { cn, createButtonClasses } from '@/design-system/utils/cn'
+
+interface ButtonProps {
+  variant?: 'primary' | 'secondary' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  children: React.ReactNode
+  className?: string
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = 'primary',
+  size = 'md',
+  children,
+  className,
+  ...props
+}) => {
+  const classes = createButtonClasses(variant, size, false, false, className)
+  
+  return (
+    <button className={classes} {...props}>
+      {children}
+    </button>
+  )
+}
+```
+
+### Componente Molecule
+```tsx
+import { Button } from '@/design-system/atomic/atoms/Button'
+import { Input } from '@/design-system/atomic/atoms/Input'
+import { cn } from '@/design-system/utils/cn'
+
+interface SearchBarProps {
+  onSearch: (query: string) => void
+  placeholder?: string
+  className?: string
+}
+
+export const SearchBar: React.FC<SearchBarProps> = ({
+  onSearch,
+  placeholder = 'Buscar...',
+  className,
+}) => {
+  const [query, setQuery] = useState('')
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSearch(query)
+  }
+  
+  return (
+    <form 
+      onSubmit={handleSubmit}
+      className={cn('flex gap-sm items-center', className)}
+      role="search"
+    >
+      <Input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder={placeholder}
+        className="flex-1"
+        aria-label="Search input"
+      />
+      <Button 
+        type="submit"
+        variant="primary"
+        size="md"
+        aria-label="Submit search"
+      >
+        Buscar
+      </Button>
+    </form>
+  )
+}
+```
+
+## CONCLUSIÓN
+
+Con esta configuración logras:
+✅ **Tailwind CSS v4** proporciona utilidades y velocidad
+✅ **Design Tokens** garantizan consistencia
+✅ **Atomic Design** asegura escalabilidad
+✅ **TypeScript** previene errores
+✅ **pnpm** optimiza dependencias
+✅ **Dark Mode** incluido desde el inicio
+✅ **Responsive Design** mobile-first
+✅ **Accesibilidad** WCAG AA compliant
+
+Tu boilerplate es ahora **profesional, moderno y listo para múltiples proyectos**.

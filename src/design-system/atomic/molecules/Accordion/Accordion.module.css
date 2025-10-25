@@ -1,0 +1,73 @@
+/* src/design-system/atomic/molecules/Accordion/Accordion.module.css */
+.accordion {
+    width: 100%;
+}
+
+.accordionItem {
+    border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.accordionItem.bordered {
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.accordionItem.bordered:last-child {
+    border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.accordionTrigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-neutral-700);
+}
+
+.accordionTrigger:hover:not(:disabled) {
+    background-color: var(--color-neutral-50);
+}
+
+.accordionTrigger:disabled {
+    color: var(--color-neutral-400);
+    cursor: not-allowed;
+}
+
+.accordionTrigger.bordered {
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+}
+
+.accordionIcon {
+    transition: var(--transition-fast);
+    color: var(--color-neutral-500);
+}
+
+.accordionIcon.disabled {
+    color: var(--color-neutral-300);
+}
+
+.accordionIcon.open {
+    transform: rotate(180deg);
+}
+
+.accordionContent {
+    overflow: hidden;
+    transition: var(--transition-fast);
+}
+
+.accordionContentInner {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    color: var(--color-neutral-600);
+}
+
+.accordionContentInner.bordered {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+}

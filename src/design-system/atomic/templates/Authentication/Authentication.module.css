@@ -1,0 +1,149 @@
+/* Authentication.module.css */
+.authenticationTemplate {
+    min-height: 100vh;
+    display: flex;
+    background: var(--color-background-light);
+}
+
+.leftPanel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    background: var(--color-background);
+}
+
+.rightPanel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+    position: relative;
+}
+
+.rightPanelWithImage {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%233B82F6;stop-opacity:1" /><stop offset="100%" style="stop-color:%238B5CF6;stop-opacity:1" /></linearGradient></defs><rect width="100%" height="100%" fill="url(%23grad)"/></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.rightPanelWithImage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.rightPanelContent {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--color-white);
+}
+
+.rightPanelTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+}
+
+.rightPanelSubtitle {
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+    margin-bottom: var(--spacing-lg);
+}
+
+.rightPanelDescription {
+    font-size: var(--font-size-base);
+    opacity: 0.8;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.authContainer {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.authHeader {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.authTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.authSubtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+}
+
+.authContent {
+    background: var(--color-background);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border-light);
+}
+
+.authFooter {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.authFooterLink {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.authFooterLink:hover {
+    text-decoration: underline;
+}
+
+.singlePanel {
+    flex: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+    .authenticationTemplate {
+        flex-direction: column;
+    }
+
+    .leftPanel,
+    .rightPanel {
+        flex: none;
+        min-height: 50vh;
+    }
+
+    .rightPanelContent {
+        padding: var(--spacing-lg);
+    }
+
+    .rightPanelTitle {
+        font-size: 2rem;
+    }
+
+    .rightPanelSubtitle {
+        font-size: var(--font-size-base);
+    }
+}

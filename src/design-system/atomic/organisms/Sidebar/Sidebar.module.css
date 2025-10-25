@@ -1,0 +1,233 @@
+/* Sidebar.module.css */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-background);
+    border-right: 1px solid var(--color-border-light);
+    transition: var(--transition-base);
+}
+
+.sidebarDefault {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+.sidebarCollapsed {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+.sidebarFloating {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.sidebarNarrow {
+    width: 200px;
+}
+
+.sidebarMedium {
+    width: 250px;
+}
+
+.sidebarWide {
+    width: 300px;
+}
+
+.sidebarCollapsedNarrow {
+    width: 60px;
+}
+
+.header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+.logoText {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+}
+
+.title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-sm);
+}
+
+.nav {
+    flex: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+}
+
+.navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.navItem {
+    position: relative;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-base);
+    font-weight: 500;
+}
+
+.navLink:hover {
+    background: var(--color-background-light);
+    color: var(--color-text-primary);
+}
+
+.navLinkActive {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.navLinkActive:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.navIcon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.navLabel {
+    flex: 1;
+}
+
+.navLabelCollapsed {
+    display: none;
+}
+
+.submenu {
+    margin-left: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.submenuItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-base);
+    font-size: var(--font-size-sm);
+}
+
+.submenuItem:hover {
+    background: var(--color-background-light);
+    color: var(--color-text-secondary);
+}
+
+.submenuItemActive {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.submenuItemActive:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.submenuIcon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.submenuLabel {
+    flex: 1;
+}
+
+.submenuLabelCollapsed {
+    display: none;
+}
+
+.footer {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--color-border-light);
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footerText {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    text-align: center;
+}
+
+.footerTextCollapsed {
+    display: none;
+}
+
+.toggleButton {
+    position: absolute;
+    top: var(--spacing-md);
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    background: var(--color-background);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-base);
+    z-index: 10;
+}
+
+.toggleButton:hover {
+    background: var(--color-background-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.toggleIcon {
+    width: 12px;
+    height: 12px;
+    transition: var(--transition-base);
+}
+
+.toggleIconCollapsed {
+    transform: rotate(180deg);
+}

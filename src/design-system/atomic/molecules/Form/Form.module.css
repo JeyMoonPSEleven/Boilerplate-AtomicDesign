@@ -1,0 +1,25 @@
+/* src/design-system/atomic/molecules/Form/Form.module.css */
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Spacing */
+.sm>*+* {
+    margin-top: var(--spacing-sm);
+}
+
+.md>*+* {
+    margin-top: var(--spacing-md);
+}
+
+.lg>*+* {
+    margin-top: var(--spacing-lg);
+}
+
+/* Error styles for validation */
+.form input.error {
+    border-color: var(--color-danger) !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
