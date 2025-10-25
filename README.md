@@ -2,15 +2,27 @@
 
 Un boilerplate completo de React + TypeScript con Atomic Design System, diseñado para ser altamente personalizable y reutilizable en proyectos de consultoría digital.
 
+[![CI/CD Pipeline](https://github.com/JeyMoonPSEleven/Boilerplate-AtomicDesign/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/JeyMoonPSEleven/Boilerplate-AtomicDesign/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2+-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18+-61dafb.svg)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.0+-38bdf8.svg)](https://tailwindcss.com/)
+
 ## 🚀 Características
 
 - **React 18 + TypeScript**: Desarrollo moderno con tipado fuerte
 - **Vite**: Build tool rápido y eficiente
+- **React Router DOM**: Enrutado completo con lazy loading
 - **Atomic Design**: Estructura organizada por átomos, moléculas, organismos, templates y páginas
+- **Tailwind CSS v4**: Sistema de utilidades CSS moderno
 - **Design Tokens**: Sistema de variables CSS personalizable
 - **Testing**: Vitest + Testing Library configurado
+- **CI/CD**: GitHub Actions con pipeline completo
 - **pnpm**: Gestor de paquetes eficiente
 - **Componentes Personalizables**: Todos los componentes son altamente configurables
+- **Dark Mode**: Soporte completo para modo oscuro
+- **Responsive**: Mobile-first approach
+- **Accesible**: Componentes WCAG 2.1 AA compliant
 
 ## 📁 Estructura del Proyecto
 
@@ -52,16 +64,75 @@ El sistema incluye tokens de diseño completamente personalizables:
 
 ## 🧩 Componentes Disponibles
 
-### Atoms
-- **Button**: Botón con 9 variantes, 3 tamaños y estados especiales
+### Atoms (50+ componentes)
+- **Button**: Botón con múltiples variantes, tamaños y estados
 - **Input**: Campo de entrada con validación y estados
 - **Text**: Texto con variantes de tamaño y color
 - **Heading**: Encabezados semánticos con niveles
 - **Icon**: Iconos con múltiples tamaños y variantes
+- **Badge**: Etiquetas para estados y categorías
+- **Avatar**: Avatares de usuario con fallbacks
+- **Checkbox**: Casillas de verificación accesibles
+- **Radio**: Botones de radio con validación
+- **Switch**: Interruptores con animaciones
+- **Slider**: Deslizadores con valores personalizables
+- **Progress**: Barras de progreso con animaciones
+- **Spinner**: Indicadores de carga
+- **Divider**: Separadores visuales
+- **Link**: Enlaces con variantes y estados
+- **Logo**: Logotipos escalables
+- **Image**: Imágenes con lazy loading
+- **Video**: Reproductores de video responsivos
+- Y muchos más...
 
-### Molecules
+### Molecules (15+ componentes)
 - **Card**: Tarjetas con variantes y efectos hover
 - **Form**: Formularios con validación automática
+- **Modal**: Modales accesibles y responsivos
+- **Alert**: Alertas y notificaciones
+- **SearchBar**: Barra de búsqueda con filtros
+- **Pagination**: Navegación de páginas
+- **Tabs**: Pestañas con navegación por teclado
+- **Accordion**: Acordeones colapsables
+- **Breadcrumb**: Migas de pan navegables
+- **Rating**: Sistema de calificaciones
+- **Toast**: Notificaciones toast
+- **Tooltip**: Tooltips informativos
+- Y más...
+
+### Organisms (12+ componentes)
+- **Header**: Cabecera con navegación completa
+- **Footer**: Pie de página con enlaces y contacto
+- **Navigation**: Navegación principal y secundaria
+- **Hero**: Sección hero con CTA
+- **ContactForm**: Formulario de contacto completo
+- **Testimonials**: Testimonios y reseñas
+- **FAQ**: Preguntas frecuentes
+- **Newsletter**: Suscripción a newsletter
+- **Pricing**: Tablas de precios
+- **Statistics**: Estadísticas y métricas
+- **Dashboard**: Widgets de dashboard
+- **Sidebar**: Barra lateral navegable
+
+### Templates (10+ templates)
+- **LayoutBase**: Layout base con header y footer
+- **Landing**: Template para páginas de aterrizaje
+- **Dashboard**: Template para dashboards
+- **Authentication**: Template para autenticación
+- **Documentation**: Template para documentación
+- **Error**: Template para páginas de error
+- **Blog**: Template para blogs
+- **Profile**: Template para perfiles de usuario
+- **Settings**: Template para configuraciones
+- **Admin**: Template para paneles de administración
+- **Maintenance**: Template para mantenimiento
+
+### Pages (5+ páginas de ejemplo)
+- **HomePage**: Página de inicio completa
+- **ComponentsPage**: Galería de componentes
+- **DocumentationPage**: Documentación interactiva
+- **ExamplesPage**: Ejemplos de uso
+- **NotFoundPage**: Página 404 personalizada
 
 ## 🛠️ Comandos Disponibles
 
@@ -153,14 +224,28 @@ pnpm test --watch
 pnpm coverage
 ```
 
+## 🔄 CI/CD Pipeline
+
+El proyecto incluye un pipeline completo de CI/CD con GitHub Actions:
+
+- **Quality Check**: ESLint, Prettier y TypeScript checks
+- **Test Suite**: Tests unitarios con cobertura
+- **Build Check**: Verificación de compilación
+- **Security Audit**: Auditoría de seguridad de dependencias
+- **Deploy**: Despliegue automático a GitHub Pages
+
 ## 📚 Próximos Pasos
 
-- [ ] Migrar más componentes de la carpeta `components/`
-- [ ] Agregar componentes de organisms
-- [ ] Implementar templates y pages
+- [x] ✅ Implementar organismos de ejemplo (Header, Footer)
+- [x] ✅ Crear template LayoutBase
+- [x] ✅ Configurar React Router DOM
+- [x] ✅ Configurar GitHub Actions CI/CD
+- [x] ✅ Agregar archivo LICENSE MIT
 - [ ] Agregar Storybook para documentación
-- [ ] Configurar CI/CD
-- [ ] Agregar más tests
+- [ ] Implementar más tests
+- [ ] Agregar componentes de formularios avanzados
+- [ ] Implementar sistema de notificaciones
+- [ ] Agregar componentes de data visualization
 
 ## 🤝 Contribución
 

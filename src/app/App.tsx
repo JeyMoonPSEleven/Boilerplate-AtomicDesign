@@ -1,12 +1,12 @@
 // src/app/App.tsx
-import { DesignSystemDemo } from './DesignSystemDemo';
+import { AppRoutes } from '../design-system/atomic/pages/AppRoutes';
 import { ThemeProvider } from '../design-system/contexts/ThemeContext';
 
 function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="boilerplate-theme">
       <div className="min-h-screen bg-bg-body text-text-primary">
-        <DesignSystemDemo />
+        <AppRoutes />
       </div>
     </ThemeProvider>
   );

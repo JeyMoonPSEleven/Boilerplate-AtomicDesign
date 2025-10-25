@@ -1,3 +1,4 @@
+export { LayoutBase } from './LayoutBase';
 export { default as Landing } from './Landing';
 export { default as Dashboard } from './Dashboard';
 export { default as Authentication } from './Authentication';
@@ -9,6 +10,7 @@ export { default as Profile } from './Profile';
 export { default as Settings } from './Settings';
 export { default as Admin } from './Admin';
 
+export type { LayoutBaseProps } from './LayoutBase';
 export type { LandingProps } from './Landing';
 export type { DashboardTemplateProps } from './Dashboard';
 export type { AuthenticationTemplateProps } from './Authentication';
