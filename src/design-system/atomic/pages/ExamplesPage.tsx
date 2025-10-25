@@ -1,7 +1,7 @@
 import React from 'react';
-import { LayoutBase } from '../../templates/LayoutBase';
-import { Card } from '../../molecules/Card';
-import { Heading, Text, Button } from '../../atoms';
+import { LayoutBase } from '../templates';
+import { Card } from '../molecules/Card';
+import { Heading, Text, Button } from '../atoms';
 import styles from './ExamplesPage.module.css';
 
 export const ExamplesPage: React.FC = () => {

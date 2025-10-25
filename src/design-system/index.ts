@@ -15,6 +15,9 @@ export {
     Admin
 } from './atomic/templates';
 
+// Enhanced Components with Radix UI and Framer Motion
+export * from './atomic/enhanced';
+
 // Utilities
 export * from './utils';
 

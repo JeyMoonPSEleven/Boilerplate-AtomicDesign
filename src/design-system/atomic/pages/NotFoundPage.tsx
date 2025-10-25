@@ -1,8 +1,8 @@
 import React from 'react';
-import { LayoutBase } from '../../templates/LayoutBase';
-import { Card } from '../../molecules/Card';
-import { Heading, Text, Button } from '../../atoms';
-import { Link } from '../../atoms/Link';
+import { LayoutBase } from '../templates';
+import { Card } from '../molecules/Card';
+import { Heading, Text, Button } from '../atoms';
+import { Link } from '../atoms/Link';
 import styles from './NotFoundPage.module.css';
 
 export const NotFoundPage: React.FC = () => {

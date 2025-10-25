@@ -252,9 +252,13 @@ export default {
             /* === TRANSICIONES DESDE NUESTROS TOKENS === */
             transitionDuration: {
                 0: '0ms',
-                fast: 'var(--transition-fast)',
-                base: 'var(--transition-base)',
-                slow: 'var(--transition-slow)',
+                instant: 'var(--animation-duration-instant)',
+                fast: 'var(--animation-duration-fast)',
+                normal: 'var(--animation-duration-normal)',
+                base: 'var(--animation-duration-base)',
+                slow: 'var(--animation-duration-slow)',
+                slower: 'var(--animation-duration-slower)',
+                slowest: 'var(--animation-duration-slowest)',
                 75: '75ms',
                 100: '100ms',
                 150: '150ms',
@@ -273,6 +277,46 @@ export default {
                 'ease-in': 'var(--ease-in)',
                 'ease-out': 'var(--ease-out)',
                 'ease-in-out': 'var(--ease-in-out)',
+                smooth: 'var(--ease-smooth)',
+                bounce: 'var(--ease-bounce)',
+                spring: 'var(--ease-spring)',
+                expo: 'var(--ease-expo)',
+                circ: 'var(--ease-circ)',
+                quart: 'var(--ease-quart)',
+                quint: 'var(--ease-quint)',
+                sine: 'var(--ease-sine)',
+            },
+
+            /* === ANIMACIONES PERSONALIZADAS === */
+            animation: {
+                'fade-in': 'var(--animation-fade-in)',
+                'fade-out': 'var(--animation-fade-out)',
+                'slide-up': 'var(--animation-slide-up)',
+                'slide-down': 'var(--animation-slide-down)',
+                'slide-left': 'var(--animation-slide-left)',
+                'slide-right': 'var(--animation-slide-right)',
+                'scale-in': 'var(--animation-scale-in)',
+                'scale-out': 'var(--animation-scale-out)',
+                'bounce-in': 'var(--animation-bounce-in)',
+                'shake': 'var(--animation-shake)',
+                'pulse': 'var(--animation-pulse)',
+                'spin': 'var(--animation-spin)',
+                'ping': 'var(--animation-ping)',
+            },
+
+            /* === DELAYS DE ANIMACIÓN === */
+            animationDelay: {
+                0: 'var(--animation-delay-0)',
+                1: 'var(--animation-delay-1)',
+                2: 'var(--animation-delay-2)',
+                3: 'var(--animation-delay-3)',
+                4: 'var(--animation-delay-4)',
+                5: 'var(--animation-delay-5)',
+                6: 'var(--animation-delay-6)',
+                7: 'var(--animation-delay-7)',
+                8: 'var(--animation-delay-8)',
+                9: 'var(--animation-delay-9)',
+                10: 'var(--animation-delay-10)',
             },
 
             /* === BREAKPOINTS PERSONALIZADOS === */

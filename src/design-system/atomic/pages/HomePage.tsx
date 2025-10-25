@@ -1,9 +1,9 @@
 import React from 'react';
-import { LayoutBase } from '../../templates/LayoutBase';
-import { Hero } from '../../organisms/Hero';
-import { Card } from '../../molecules/Card';
-import { Button } from '../../atoms/Button';
-import { Heading, Text } from '../../atoms';
+import { LayoutBase } from '../templates';
+import { Hero } from '../organisms/Hero';
+import { Card } from '../molecules/Card';
+import { Button } from '../atoms/Button';
+import { Heading, Text } from '../atoms';
 import styles from './HomePage.module.css';
 
 export const HomePage: React.FC = () => {

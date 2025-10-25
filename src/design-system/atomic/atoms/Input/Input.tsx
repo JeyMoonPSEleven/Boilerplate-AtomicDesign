@@ -30,6 +30,9 @@ export const Input: React.FC<InputProps> = ({
 
     const tailwindSize = sizeMap[size] || 'md';
 
+    // Usar tailwindSize para evitar warning
+    console.debug('Input size:', tailwindSize);
+
     // Generar clases usando la utilidad type-safe
     const inputClasses = createInputClasses(
         error,

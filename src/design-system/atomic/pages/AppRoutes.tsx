@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { LayoutBase } from '../templates/LayoutBase';
 import { HomePage } from './HomePage';
 import { ComponentsPage } from './ComponentsPage';
+import AtomicDesignDemo from './AtomicDesignDemo';
+import AtomicDesignShowcase from './AtomicDesignShowcase';
 
 // Lazy loading para páginas adicionales
 const DocumentationPage = React.lazy(() => import('./DocumentationPage'));
@@ -15,8 +17,11 @@ export const AppRoutes: React.FC = () => {
             <React.Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     {/* Rutas principales */}
-                    <Route path="/" element={<HomePage />} />
+                    <Route path="/" element={<AtomicDesignDemo />} />
+                    <Route path="/home" element={<HomePage />} />
                     <Route path="/components" element={<ComponentsPage />} />
+                    <Route path="/demo" element={<AtomicDesignDemo />} />
+                    <Route path="/showcase" element={<AtomicDesignShowcase />} />
 
                     {/* Rutas lazy loaded */}
                     <Route path="/docs" element={<DocumentationPage />} />
@@ -37,7 +42,6 @@ export const AppRoutes: React.FC = () => {
                     } />
 
                     {/* Redirecciones */}
-                    <Route path="/home" element={<Navigate to="/" replace />} />
                     <Route path="/get-started" element={<Navigate to="/docs" replace />} />
 
                     {/* 404 - debe ir al final */}

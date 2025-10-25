@@ -339,6 +339,70 @@
       border-color var(--duration-base) var(--ease-out-cubic),
       color var(--duration-base) var(--ease-out-cubic);
 
+    /* === ANIMACIONES AVANZADAS PARA RADIX UI Y FRAMER MOTION === */
+    --animation-duration-instant: 0ms;
+    --animation-duration-fast: 100ms;
+    --animation-duration-normal: 200ms;
+    --animation-duration-base: 300ms;
+    --animation-duration-slow: 500ms;
+    --animation-duration-slower: 700ms;
+    --animation-duration-slowest: 1000ms;
+
+    /* === EASING FUNCTIONS AVANZADAS === */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    --ease-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    --ease-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    --ease-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    --ease-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+    /* === ANIMACIONES ESPECÍFICAS PARA COMPONENTES === */
+    --animation-fade-in: fadeIn var(--animation-duration-base) var(--ease-smooth);
+    --animation-fade-out: fadeOut var(--animation-duration-fast) var(--ease-smooth);
+    --animation-slide-up: slideUp var(--animation-duration-base) var(--ease-spring);
+    --animation-slide-down: slideDown var(--animation-duration-base) var(--ease-spring);
+    --animation-slide-left: slideLeft var(--animation-duration-base) var(--ease-spring);
+    --animation-slide-right: slideRight var(--animation-duration-base) var(--ease-spring);
+    --animation-scale-in: scaleIn var(--animation-duration-normal) var(--ease-back);
+    --animation-scale-out: scaleOut var(--animation-duration-fast) var(--ease-back);
+    --animation-bounce-in: bounceIn var(--animation-duration-slow) var(--ease-bounce);
+    --animation-shake: shake var(--animation-duration-normal) var(--ease-elastic);
+    --animation-pulse: pulse var(--animation-duration-slow) var(--ease-sine) infinite;
+    --animation-spin: spin 1s linear infinite;
+    --animation-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+    /* === DELAYS PARA ANIMACIONES ESCALONADAS === */
+    --animation-delay-0: 0ms;
+    --animation-delay-1: 50ms;
+    --animation-delay-2: 100ms;
+    --animation-delay-3: 150ms;
+    --animation-delay-4: 200ms;
+    --animation-delay-5: 250ms;
+    --animation-delay-6: 300ms;
+    --animation-delay-7: 350ms;
+    --animation-delay-8: 400ms;
+    --animation-delay-9: 450ms;
+    --animation-delay-10: 500ms;
+
+    /* === RADIX UI SPECIFIC TOKENS === */
+    --radix-dialog-overlay-bg: rgba(0, 0, 0, 0.4);
+    --radix-dropdown-bg: var(--color-background-primary);
+    --radix-dropdown-border: var(--color-border-primary);
+    --radix-dropdown-shadow: var(--shadow-lg);
+    --radix-tooltip-bg: var(--color-gray-900);
+    --radix-tooltip-text: var(--color-text-on-primary);
+    --radix-popover-bg: var(--color-background-primary);
+    --radix-popover-border: var(--color-border-primary);
+    --radix-popover-shadow: var(--shadow-xl);
+
+    /* === FRAMER MOTION PRESETS === */
+    --motion-spring-tight: 0.4, 0, 0.2, 1;
+    --motion-spring-gentle: 0.6, 0, 0.2, 1;
+    --motion-spring-wobbly: 0.68, -0.6, 0.32, 1.6;
+    --motion-spring-stiff: 0.2, 0, 0.2, 1;
+
     /* === SCROLL-DRIVEN ANIMATIONS TOKENS === */
     --scroll-timeline-axis: block;
     --scroll-timeline-range-start: 0%;
@@ -940,5 +1004,173 @@
 
   .focus\:ring:focus {
     box-shadow: var(--shadow-focus) !important;
+  }
+
+  /* === KEYFRAMES PARA ANIMACIONES AVANZADAS === */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideRight {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes scaleOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    to {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shake {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-2px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(2px);
+    }
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes ping {
+
+    75%,
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
   }
 }
