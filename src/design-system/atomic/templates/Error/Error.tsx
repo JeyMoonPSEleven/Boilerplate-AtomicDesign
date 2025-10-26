@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Heading, Text, Link } from '../../atoms';
 import { ErrorTemplateProps } from './Error.types';
-import styles from './Error.module.css';
+import { cn } from '../../../utils/cn';
 
 const ErrorTemplate: React.FC<ErrorTemplateProps> = ({
     children,

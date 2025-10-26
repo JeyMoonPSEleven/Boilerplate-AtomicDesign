@@ -1,6 +1,6 @@
 import React from 'react';
 import { MaintenanceTemplateProps } from './Maintenance.types';
-import styles from './Maintenance.module.css';
+import { cn } from '../../../utils/cn';
 import { Heading, Text } from '../../atoms';
 
 const MaintenanceTemplate: React.FC<MaintenanceTemplateProps> = ({

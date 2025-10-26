@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Logo, Link } from '../../atoms';
 import { NavigationProps } from './Navigation.types';
-import styles from './Navigation.module.css';
+import { cn } from '../../../utils/cn';
 
 const Navigation: React.FC<NavigationProps> = ({
     logo,

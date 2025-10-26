@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProfileTemplateProps } from './Profile.types';
-import styles from './Profile.module.css';
+import { cn } from '../../../utils/cn';
 import { Heading, Text } from '../../atoms';
 import { Footer } from '../../organisms/Footer';
 

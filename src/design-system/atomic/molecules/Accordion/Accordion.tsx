@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { AccordionProps } from './Accordion.types';
-import { cn } from '../../../utils';
+import { cn } from '../../utils/cn';
 import { Icon } from '../../atoms/Icon';
-import styles from './Accordion.module.css';
 
 export const Accordion: React.FC<AccordionProps> = ({
     items,

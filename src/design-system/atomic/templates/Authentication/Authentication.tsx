@@ -1,7 +1,7 @@
 import React from 'react';
 import { Logo, Text, Heading } from '../../atoms';
 import { AuthenticationTemplateProps } from './Authentication.types';
-import styles from './Authentication.module.css';
+import { cn } from '../../../utils/cn';
 
 const AuthenticationTemplate: React.FC<AuthenticationTemplateProps> = ({
     children,

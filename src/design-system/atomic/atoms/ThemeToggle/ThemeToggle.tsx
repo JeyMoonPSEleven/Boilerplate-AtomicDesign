@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Icon } from '../Icon';
 import { Button } from '../Button';
-import styles from './ThemeToggle.module.css';
+import { cn } from '../../../utils/cn';
 
 export interface ThemeToggleProps {
     className?: string;

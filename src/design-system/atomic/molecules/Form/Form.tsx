@@ -1,7 +1,7 @@
 // src/design-system/atomic/molecules/Form/Form.tsx
 import React from 'react';
 import { FormProps } from './Form.types';
-import styles from './Form.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Form: React.FC<FormProps> = ({
     onSubmit,

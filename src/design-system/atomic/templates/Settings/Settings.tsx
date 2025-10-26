@@ -1,6 +1,6 @@
 import React from 'react';
 import { SettingsTemplateProps } from './Settings.types';
-import styles from './Settings.module.css';
+import { cn } from '../../../utils/cn';
 import { Heading, Text } from '../../atoms';
 import { Footer } from '../../organisms/Footer';
 

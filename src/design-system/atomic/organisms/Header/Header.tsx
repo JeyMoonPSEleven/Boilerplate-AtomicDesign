@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { HeaderProps, NavigationItem } from './Header.types';
-import { cn } from '../../../utils';
+import { cn } from '../../../utils/cn';
 import { Button, Logo, Icon, Link } from '../../atoms';
-import styles from './Header.module.css';
 
 export const Header: React.FC<HeaderProps> = ({
     logo,

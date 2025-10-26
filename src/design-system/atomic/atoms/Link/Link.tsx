@@ -1,7 +1,7 @@
 // src/design-system/atomic/atoms/Link/Link.tsx
 import React from 'react';
 import { LinkProps } from './Link.types';
-import styles from './Link.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Link: React.FC<LinkProps> = ({
     href,

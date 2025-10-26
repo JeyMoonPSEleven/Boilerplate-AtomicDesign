@@ -2,7 +2,7 @@ import React from 'react';
 import { PaginationProps } from './Pagination.types';
 import { cn } from '../../../utils';
 import { Icon } from '../../atoms/Icon';
-import styles from './Pagination.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Pagination: React.FC<PaginationProps> = ({
     currentPage,

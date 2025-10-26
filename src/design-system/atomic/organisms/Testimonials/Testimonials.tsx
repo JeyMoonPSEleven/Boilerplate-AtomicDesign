@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Text, Heading } from '../../atoms';
 import { TestimonialsProps, Testimonial } from './Testimonials.types';
-import styles from './Testimonials.module.css';
+import { cn } from '../../../utils/cn';
 
 const Testimonials: React.FC<TestimonialsProps> = ({
     testimonials = [

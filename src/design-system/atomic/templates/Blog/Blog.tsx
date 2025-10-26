@@ -1,6 +1,6 @@
 import React from 'react';
 import { BlogTemplateProps } from './Blog.types';
-import styles from './Blog.module.css';
+import { cn } from '../../../utils/cn';
 import { Heading, Text } from '../../atoms';
 import { Footer } from '../../organisms/Footer';
 

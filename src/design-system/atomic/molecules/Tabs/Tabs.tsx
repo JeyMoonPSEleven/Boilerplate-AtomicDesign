@@ -1,7 +1,7 @@
 // src/design-system/atomic/molecules/Tabs/Tabs.tsx
 import React, { useState } from 'react';
 import { TabsProps } from './Tabs.types';
-import styles from './Tabs.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Tabs: React.FC<TabsProps> = ({
     items,
@@ -16,15 +16,6 @@ export const Tabs: React.FC<TabsProps> = ({
         defaultActiveTab || items.find(item => !item.disabled)?.id || items[0]?.id
     );
 
-    const tabsClasses = [
-        styles.tabs,
-        styles[variant],
-        fullWidth ? styles.fullWidth : '',
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ');
-
     const handleTabClick = (tabId: string) => {
         const tab = items.find(item => item.id === tabId);
         if (tab && !tab.disabled) {
@@ -33,58 +24,67 @@ export const Tabs: React.FC<TabsProps> = ({
         }
     };
 
-    const activeTabContent = items.find(item => item.id === activeTab)?.content;
+    const activeTabContent = items.find(item => item.id === activeTab);
+
+    const tabsClasses = cn(
+        'flex',
+        variant === 'pills' && 'bg-gray-100 p-1 rounded-lg',
+        variant === 'underline' && 'border-b border-gray-200',
+        variant === 'default' && 'space-x-1',
+        fullWidth && 'w-full',
+        className
+    );
+
+    const tabClasses = (tabId: string, disabled: boolean) => cn(
+        'px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 cursor-pointer',
+        size === 'small' && 'px-3 py-1.5 text-xs',
+        size === 'large' && 'px-6 py-3 text-base',
+        variant === 'pills' && 'rounded-md',
+        variant === 'underline' && 'border-b-2 border-transparent',
+        activeTab === tabId && variant === 'default' && 'bg-primary-100 text-primary-700',
+        activeTab === tabId && variant === 'pills' && 'bg-white text-primary-700 shadow-sm',
+        activeTab === tabId && variant === 'underline' && 'border-primary-500 text-primary-600',
+        !activeTab && tabId !== activeTab && 'text-gray-500 hover:text-gray-700',
+        disabled && 'opacity-50 cursor-not-allowed',
+        !disabled && 'hover:text-gray-700'
+    );
 
     return (
-        <div className={styles.tabsContainer}>
+        <div className="w-full">
             {/* Tab Headers */}
             <div className={tabsClasses} role="tablist">
-                {items.map((item) => {
-                    const isActive = item.id === activeTab;
-                    const isDisabled = item.disabled;
-
-                    const tabClasses = [
-                        styles.tab,
-                        styles[size],
-                        styles[variant],
-                        isActive ? styles.active : '',
-                        isDisabled ? styles.disabled : '',
-                        fullWidth ? styles.fullWidthTab : '',
-                    ]
-                        .filter(Boolean)
-                        .join(' ');
-
-                    return (
-                        <button
-                            key={item.id}
-                            className={tabClasses}
-                            onClick={() => handleTabClick(item.id)}
-                            disabled={isDisabled}
-                            role="tab"
-                            aria-selected={isActive}
-                            aria-controls={`tabpanel-${item.id}`}
-                            id={`tab-${item.id}`}
-                        >
-                            {item.icon && (
-                                <span className={styles.icon}>
-                                    {item.icon}
-                                </span>
-                            )}
-                            <span>{item.label}</span>
-                        </button>
-                    );
-                })}
+                {items.map((item) => (
+                    <button
+                        key={item.id}
+                        role="tab"
+                        aria-selected={activeTab === item.id}
+                        aria-controls={`tabpanel-${item.id}`}
+                        id={`tab-${item.id}`}
+                        className={tabClasses(item.id, item.disabled || false)}
+                        onClick={() => handleTabClick(item.id)}
+                        disabled={item.disabled || false}
+                    >
+                        {item.icon && (
+                            <span className="mr-2">{item.icon}</span>
+                        )}
+                        {item.label}
+                    </button>
+                ))}
             </div>
 
             {/* Tab Content */}
-            <div
-                className={styles.tabContent}
-                role="tabpanel"
-                aria-labelledby={`tab-${activeTab}`}
-                id={`tabpanel-${activeTab}`}
-            >
-                {activeTabContent}
-            </div>
+            {activeTabContent && (
+                <div
+                    role="tabpanel"
+                    id={`tabpanel-${activeTab}`}
+                    aria-labelledby={`tab-${activeTab}`}
+                    className="mt-4"
+                >
+                    {activeTabContent.content}
+                </div>
+            )}
         </div>
     );
 };
+
+export default Tabs;

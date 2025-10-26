@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Input, Text, Heading, Checkbox } from '../../atoms';
 import { Card, Form, Alert } from '../../molecules';
 import { ContactFormProps, ContactFormData } from './ContactForm.types';
-import styles from './ContactForm.module.css';
+import { cn } from '../../../utils/cn';
 
 const ContactForm: React.FC<ContactFormProps> = ({
     title = 'Consulta Gratuita',

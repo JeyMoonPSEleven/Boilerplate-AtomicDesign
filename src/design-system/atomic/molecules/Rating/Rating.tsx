@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { RatingProps } from './Rating.types';
-import { cn } from '../../../utils';
+import { cn } from '../../../utils/cn';
 import { Icon } from '../../atoms/Icon';
-import styles from './Rating.module.css';
 
 export const Rating: React.FC<RatingProps> = ({
     value = 0,
@@ -18,75 +17,90 @@ export const Rating: React.FC<RatingProps> = ({
     const [isHovering, setIsHovering] = useState(false);
 
     const getStarFill = (index: number) => {
-        const currentValue = isHovering ? hoverValue || 0 : value;
-        const starValue = index + 1;
+        const currentValue = isHovering ? hoverValue : value;
+        if (!currentValue) return 0;
 
         if (allowHalf) {
-            if (currentValue >= starValue) return 'full';
-            if (currentValue >= starValue - 0.5) return 'half';
-            return 'empty';
-        } else {
-            return currentValue >= starValue ? 'full' : 'empty';
+            if (currentValue >= index + 1) return 1;
+            if (currentValue >= index + 0.5) return 0.5;
+            return 0;
         }
+
+        return currentValue >= index + 1 ? 1 : 0;
     };
 
     const handleStarClick = (index: number) => {
-        if (!readOnly && onChange) {
-            const newValue = index + 1;
-            onChange(newValue);
-        }
+        if (readOnly || !onChange) return;
+
+        const newValue = allowHalf ? index + 0.5 : index + 1;
+        onChange(newValue);
     };
 
     const handleStarHover = (index: number) => {
-        if (!readOnly) {
-            setHoverValue(index + 1);
-            setIsHovering(true);
-        }
+        if (readOnly) return;
+        setHoverValue(index + 1);
+        setIsHovering(true);
     };
 
     const handleMouseLeave = () => {
-        if (!readOnly) {
-            setHoverValue(null);
-            setIsHovering(false);
-        }
+        if (readOnly) return;
+        setHoverValue(null);
+        setIsHovering(false);
     };
 
+    const sizeClasses = {
+        small: 'w-4 h-4',
+        medium: 'w-5 h-5',
+        large: 'w-6 h-6',
+    };
+
+    const containerClasses = cn(
+        'flex items-center gap-1',
+        !readOnly && 'cursor-pointer',
+        className
+    );
+
     return (
-        <div
-            className={cn(styles.rating, className)}
-            onMouseLeave={handleMouseLeave}
-        >
+        <div className={containerClasses} onMouseLeave={handleMouseLeave}>
             {Array.from({ length: max }, (_, index) => {
                 const fill = getStarFill(index);
+                const isHalf = fill === 0.5;
+                const isFull = fill === 1;
 
                 return (
                     <button
                         key={index}
+                        type="button"
                         className={cn(
-                            styles.ratingStar,
-                            styles[size],
-                            styles[fill],
-                            readOnly && styles.readOnly
+                            'transition-colors duration-200',
+                            !readOnly && 'hover:scale-110',
+                            sizeClasses[size]
                         )}
                         onClick={() => handleStarClick(index)}
                         onMouseEnter={() => handleStarHover(index)}
                         disabled={readOnly}
-                        type="button"
                         aria-label={`Rate ${index + 1} out of ${max}`}
                     >
                         <Icon
-                            name="star"
-                            size={size === 'small' ? 'small' : size === 'large' ? 'large' : 'medium'}
+                            name="Star"
+                            className={cn(
+                                'transition-colors duration-200',
+                                isFull && 'text-yellow-400',
+                                isHalf && 'text-yellow-400',
+                                !isFull && !isHalf && 'text-gray-300'
+                            )}
                         />
                     </button>
                 );
             })}
 
             {showValue && (
-                <span className={styles.ratingValue}>
+                <span className="ml-2 text-sm text-gray-600">
                     {value.toFixed(allowHalf ? 1 : 0)}/{max}
                 </span>
             )}
         </div>
     );
 };
+
+export default Rating;

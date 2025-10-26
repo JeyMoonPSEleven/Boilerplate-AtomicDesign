@@ -1,6 +1,6 @@
 import React from 'react';
 import { AdminTemplateProps } from './Admin.types';
-import styles from './Admin.module.css';
+import { cn } from '../../../utils/cn';
 import { Heading, Text } from '../../atoms';
 import { Footer } from '../../organisms/Footer';
 

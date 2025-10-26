@@ -1,8 +1,7 @@
 // src/design-system/atomic/atoms/Video/Video.tsx
 import React, { useState, useRef } from 'react';
 import { VideoProps } from './Video.types';
-import { cn } from '../../../utils';
-import styles from './Video.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Video: React.FC<VideoProps> = ({
     src,

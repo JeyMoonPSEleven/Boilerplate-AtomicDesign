@@ -1,7 +1,8 @@
 // src/design-system/atomic/atoms/Divider/Divider.tsx
 import React from 'react';
 import { DividerProps } from './Divider.types';
-import styles from './Divider.module.css';
+import { cn } from '../../../utils/cn';
+import * as SeparatorPrimitive from '@radix-ui/react-separator';
 
 export const Divider: React.FC<DividerProps> = ({
     variant = 'solid',
@@ -11,16 +12,36 @@ export const Divider: React.FC<DividerProps> = ({
     className,
     ...props
 }) => {
-    const dividerClasses = [
-        styles.divider,
-        styles[variant],
-        styles[orientation],
-        styles[thickness],
-        styles[color],
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ');
+    const dividerClasses = cn(
+        'block',
 
-    return <div className={dividerClasses} {...props} />;
+        // Orientaciones
+        orientation === 'horizontal' && 'w-full h-px',
+        orientation === 'vertical' && 'w-px h-full inline-block',
+
+        // Variantes de estilo
+        variant === 'solid' && 'border-solid',
+        variant === 'dashed' && 'border-dashed',
+        variant === 'dotted' && 'border-dotted',
+
+        // Grosor
+        thickness === 'thin' && 'border-1',
+        thickness === 'medium' && 'border-2',
+        thickness === 'thick' && 'border-3',
+
+        // Colores
+        color === 'default' && 'border-border',
+        color === 'light' && 'border-gray-200',
+        color === 'muted' && 'border-gray-300',
+
+        className
+    );
+
+    return (
+        <SeparatorPrimitive.Root
+            orientation={orientation}
+            className={dividerClasses}
+            {...props}
+        />
+    );
 };

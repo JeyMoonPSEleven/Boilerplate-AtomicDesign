@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { ToastProps } from './Toast.types';
 import { Icon } from '../../atoms/Icon';
-import styles from './Toast.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Toast: React.FC<ToastProps> = ({
     variant = 'info',

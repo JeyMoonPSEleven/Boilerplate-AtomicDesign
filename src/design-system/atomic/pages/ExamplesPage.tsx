@@ -2,7 +2,7 @@ import React from 'react';
 import { LayoutBase } from '../templates';
 import { Card } from '../molecules/Card';
 import { Heading, Text, Button } from '../atoms';
-import styles from './ExamplesPage.module.css';
+import { cn } from '../../utils/cn';
 
 export const ExamplesPage: React.FC = () => {
     const examples = [

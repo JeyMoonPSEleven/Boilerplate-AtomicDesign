@@ -1,9 +1,10 @@
 // src/design-system/atomic/atoms/Dropdown/Dropdown.tsx
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
+import * as SelectPrimitive from '@radix-ui/react-select';
 import { DropdownProps } from './Dropdown.types';
-import { cn } from '../../../utils';
+import { cn } from '../../../utils/cn';
 import { Icon } from '../Icon';
-import styles from './Dropdown.module.css';
+import { ChevronDownIcon, CheckIcon } from '@radix-ui/react-icons';
 
 export const Dropdown: React.FC<DropdownProps> = ({
     label,
@@ -17,158 +18,90 @@ export const Dropdown: React.FC<DropdownProps> = ({
     helperText,
     size = 'medium',
     className,
-    searchable = false,
 }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
-    const dropdownRef = useRef<HTMLDivElement>(null);
     const dropdownId = `dropdown-${Math.random().toString(36).substr(2, 9)}`;
 
-    const filteredOptions = searchable
-        ? options.filter(option =>
-            option.label.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        : options;
+    const sizeClasses = {
+        small: 'h-8 px-sm py-xs text-sm',
+        medium: 'h-11 px-md py-sm text-base',
+        large: 'h-12 px-lg py-md text-lg',
+    };
 
     const selectedOption = options.find(option => option.value === value);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsOpen(false);
-                setSearchTerm('');
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    const handleToggle = () => {
-        if (!disabled) {
-            setIsOpen(!isOpen);
-            if (!isOpen) {
-                setSearchTerm('');
-            }
-        }
-    };
-
-    const handleOptionClick = (optionValue: string) => {
-        if (!disabled && onChange) {
-            onChange(optionValue);
-            setIsOpen(false);
-            setSearchTerm('');
-        }
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent) => {
-        if (disabled) return;
-
-        switch (event.key) {
-            case 'Enter':
-            case ' ':
-                event.preventDefault();
-                handleToggle();
-                break;
-            case 'Escape':
-                setIsOpen(false);
-                setSearchTerm('');
-                break;
-        }
-    };
-
     return (
-        <div className={cn(styles.dropdownGroup, className)} ref={dropdownRef}>
+        <div className={cn('flex flex-col gap-xs relative', className)}>
             {label && (
                 <label
                     htmlFor={dropdownId}
                     className={cn(
-                        styles.dropdownLabel,
-                        styles[size],
-                        disabled && styles.disabled,
-                        error && styles.error
+                        'text-sm font-medium text-gray-700 mb-xs',
+                        size === 'small' && 'text-xs',
+                        size === 'large' && 'text-base',
+                        disabled && 'text-gray-400',
+                        error && 'text-danger-600'
                     )}
                 >
                     {label}
-                    {required && <span style={{ color: 'var(--color-danger-500)', marginLeft: '4px' }}>*</span>}
+                    {required && <span className="text-danger-500 ml-xs">*</span>}
                 </label>
             )}
 
-            <div className={styles.dropdownContainer}>
-                <div
+            <SelectPrimitive.Root value={value} onValueChange={onChange} disabled={disabled}>
+                <SelectPrimitive.Trigger
                     className={cn(
-                        styles.dropdownTrigger,
-                        styles[size],
-                        isOpen && styles.open,
-                        disabled && styles.disabled,
-                        error && styles.error
+                        'flex items-center justify-between w-full bg-white border border-gray-300 rounded-md text-gray-700 cursor-pointer transition-all duration-fast',
+                        'hover:not-disabled:border-gray-400',
+                        'focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100',
+                        'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed',
+                        error && 'border-danger-500 focus:border-danger-500 focus:ring-danger-100',
+                        sizeClasses[size]
                     )}
-                    onClick={handleToggle}
-                    onKeyDown={handleKeyDown}
-                    role="button"
-                    tabIndex={disabled ? -1 : 0}
-                    aria-expanded={isOpen}
-                    aria-haspopup="listbox"
                 >
-                    <span>
-                        {selectedOption ? selectedOption.label : placeholder}
-                    </span>
-                    <Icon
-                        name="chevron-down"
-                        size={size === 'small' ? 'small' : size === 'large' ? 'large' : 'medium'}
-                        className={cn(styles.dropdownIcon, isOpen && styles.open)}
-                    />
-                </div>
+                    <SelectPrimitive.Value placeholder={placeholder}>
+                        {selectedOption?.label}
+                    </SelectPrimitive.Value>
+                    <SelectPrimitive.Icon asChild>
+                        <ChevronDownIcon className="h-4 w-4 text-gray-500" />
+                    </SelectPrimitive.Icon>
+                </SelectPrimitive.Trigger>
 
-                {isOpen && (
-                    <div className={styles.dropdownMenu}>
-                        {searchable && (
-                            <div className={styles.dropdownSearch}>
-                                <input
-                                    type="text"
-                                    placeholder="Buscar..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className={styles.dropdownSearchInput}
-                                    autoFocus
-                                />
-                            </div>
-                        )}
-
-                        {filteredOptions.length > 0 ? (
-                            filteredOptions.map((option) => (
-                                <div
+                <SelectPrimitive.Portal>
+                    <SelectPrimitive.Content className="relative z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 bg-white shadow-lg">
+                        <SelectPrimitive.Viewport className="p-1">
+                            {options.map((option) => (
+                                <SelectPrimitive.Item
                                     key={option.value}
+                                    value={option.value}
+                                    disabled={option.disabled}
                                     className={cn(
-                                        styles.dropdownOption,
-                                        styles[size],
-                                        option.value === value && styles.selected,
-                                        option.disabled && styles.disabled
+                                        'relative flex cursor-default select-none items-center gap-sm rounded-sm py-sm pl-md pr-md text-sm outline-none',
+                                        'focus:bg-gray-100 focus:text-gray-900',
+                                        'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+                                        'data-[state=checked]:bg-primary-50 data-[state=checked]:text-primary-700',
+                                        size === 'small' && 'py-xs pl-sm pr-sm text-xs',
+                                        size === 'large' && 'py-md pl-lg pr-lg text-base'
                                     )}
-                                    onClick={() => !option.disabled && handleOptionClick(option.value)}
-                                    role="option"
-                                    aria-selected={option.value === value}
                                 >
+                                    <SelectPrimitive.ItemIndicator className="absolute left-0 flex h-full w-md items-center justify-center">
+                                        <CheckIcon className="h-4 w-4" />
+                                    </SelectPrimitive.ItemIndicator>
                                     {option.icon && (
                                         <Icon
                                             name={option.icon}
                                             size={size === 'small' ? 'small' : size === 'large' ? 'large' : 'medium'}
                                         />
                                     )}
-                                    <span>{option.label}</span>
-                                </div>
-                            ))
-                        ) : (
-                            <div className={cn(styles.dropdownOption, styles[size])}>
-                                <span>No se encontraron opciones</span>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </div>
+                                    <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+                                </SelectPrimitive.Item>
+                            ))}
+                        </SelectPrimitive.Viewport>
+                    </SelectPrimitive.Content>
+                </SelectPrimitive.Portal>
+            </SelectPrimitive.Root>
 
             {helperText && (
-                <div className={cn(styles.helperText, error && styles.error)}>
+                <div className={cn('text-sm text-gray-500 mt-xs', error && 'text-danger-600')}>
                     {helperText}
                 </div>
             )}

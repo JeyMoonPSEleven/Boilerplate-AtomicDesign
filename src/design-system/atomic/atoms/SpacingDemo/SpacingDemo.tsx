@@ -1,6 +1,6 @@
 // src/design-system/atomic/atoms/SpacingDemo/SpacingDemo.tsx
 import React from 'react';
-import styles from './SpacingDemo.module.css';
+import { cn } from '../../../utils/cn';
 
 export interface SpacingDemoProps {
   className?: string;
@@ -43,9 +43,9 @@ export const SpacingDemo = React.memo<SpacingDemoProps>(({
           {spacingTokens.map((token) => (
             <div key={token.name} className={styles.spacingItem}>
               <div className={styles.spacingVisual}>
-                <div 
+                <div
                   className={styles.spacingBar}
-                  style={{ 
+                  style={{
                     height: token.value,
                     backgroundColor: 'var(--color-primary-500)'
                   }}
@@ -72,9 +72,9 @@ export const SpacingDemo = React.memo<SpacingDemoProps>(({
           {fluidSpacingTokens.map((token) => (
             <div key={token.name} className={styles.spacingItem}>
               <div className={styles.spacingVisual}>
-                <div 
+                <div
                   className={styles.spacingBarFluid}
-                  style={{ 
+                  style={{
                     height: token.value,
                     backgroundColor: 'var(--color-secondary-500)'
                   }}

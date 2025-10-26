@@ -1,7 +1,7 @@
 // src/design-system/atomic/atoms/Input/Input.tsx
 import React from 'react';
 import { InputProps } from './Input.types';
-import { cn, createInputClasses } from '../../../utils/cn';
+import { cn } from '../../../utils/cn';
 
 export const Input: React.FC<InputProps> = ({
     type = 'text',
@@ -21,22 +21,39 @@ export const Input: React.FC<InputProps> = ({
 }) => {
     const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
-    // Mapear tamaños a los nuevos tamaños de Tailwind
-    const sizeMap: Record<string, string> = {
-        small: 'sm',
-        medium: 'md',
-        large: 'lg',
-    };
+    const inputClasses = cn(
+        // Clases base
+        'w-full px-md py-sm',
+        'font-base leading-normal',
+        'bg-background border border-border rounded-md',
+        'text-text-primary',
+        'transition-all appearance-none outline-none',
 
-    const tailwindSize = sizeMap[size] || 'md';
+        // Estados de interacción
+        'focus:border-border-focus focus:shadow-focus focus:bg-background',
+        'hover:not-disabled:not-focus:border-gray-400',
 
-    // Usar tailwindSize para evitar warning
-    console.debug('Input size:', tailwindSize);
+        // Estados de validación
+        error && 'border-danger-500',
+        error && 'focus:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]',
+        !error && 'focus:shadow-[0_0_0_3px_rgba(59,130,246,0.1)]',
 
-    // Generar clases usando la utilidad type-safe
-    const inputClasses = createInputClasses(
-        error,
-        disabled,
+        // Estado deshabilitado
+        disabled && 'bg-gray-100 text-text-muted cursor-not-allowed opacity-60',
+
+        // Tamaños
+        size === 'small' && 'h-8 text-sm px-sm py-xs',
+        size === 'medium' && 'h-10 text-base px-md py-sm',
+        size === 'large' && 'h-12 text-lg px-lg py-md',
+
+        // Variantes
+        variant === 'filled' && 'bg-gray-100 border-0 focus:bg-background focus:shadow-inner',
+        variant === 'outlined' && 'border-2',
+
+        // Responsive
+        'sm:text-sm',
+
+        // Clases externas
         className
     );
 

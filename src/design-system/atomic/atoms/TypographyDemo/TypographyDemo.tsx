@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
-import styles from './TypographyDemo.module.css';
+import { cn } from '../../../utils/cn';
 
 export interface TypographyDemoProps {
     className?: string;

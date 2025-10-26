@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigation, Hero, Statistics, Testimonials, Newsletter, Footer } from '../../organisms';
 import { LandingProps } from './Landing.types';
-import styles from './Landing.module.css';
+import { cn } from '../../../utils/cn';
 
 const Landing: React.FC<LandingProps> = ({
     children,

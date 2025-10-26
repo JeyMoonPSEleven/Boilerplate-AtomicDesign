@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
-import styles from './ColorPalette.module.css';
+import { cn } from '../../../utils/cn';
 
 export interface ColorPaletteProps {
     colors: Array<{
@@ -50,22 +50,22 @@ export const ColorPalette = React.memo<ColorPaletteProps>(({
         : { 'Todos': colors };
 
     return (
-        <div className={`${styles.colorPalette} ${className || ''}`}>
+        <div className={cn('flex flex-col gap-xl', className)}>
             {Object.entries(groupedColors).map(([category, categoryColors]) => (
-                <div key={category} className={styles.colorCategory}>
-                    <Text variant="large" weight="bold" className={styles.categoryTitle}>
+                <div key={category} className="flex flex-col gap-lg">
+                    <Text variant="large" weight="bold" className="mb-md pb-sm border-b border-border-light text-text-primary">
                         {category}
                     </Text>
-                    <div className={styles.colorGrid}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg">
                         {categoryColors.map((color) => (
-                            <div key={color.name} className={styles.colorItem}>
+                            <div key={color.name} className="flex flex-col gap-sm bg-surface-base border border-border-light rounded-lg overflow-hidden transition-all duration-base ease-out animate-fade-in-scale hover:-translate-y-0.5 hover:shadow-md hover:border-primary-300">
                                 <div
-                                    className={styles.colorSwatch}
+                                    className="relative w-full h-30 border-b border-border-light cursor-pointer transition-all duration-base hover:scale-105"
                                     style={{ backgroundColor: color.value }}
                                     onClick={() => copyToClipboard(color.value, color.name)}
                                 >
                                     {showCopyButton && (
-                                        <div className={styles.copyOverlay}>
+                                        <div className="absolute inset-0 flex items-center justify-center bg-overlay-dark opacity-0 transition-opacity duration-base hover:opacity-100">
                                             <Button
                                                 variant="secondary"
                                                 size="small"
@@ -73,7 +73,7 @@ export const ColorPalette = React.memo<ColorPaletteProps>(({
                                                     e.stopPropagation();
                                                     copyToClipboard(color.value, color.name);
                                                 }}
-                                                className={styles.copyButton}
+                                                className="bg-surface-base border border-border-primary text-text-primary transition-all duration-base hover:bg-primary-500 hover:text-text-on-primary hover:border-primary-500"
                                             >
                                                 {copiedColor === color.name ? (
                                                     <>
@@ -90,17 +90,17 @@ export const ColorPalette = React.memo<ColorPaletteProps>(({
                                         </div>
                                     )}
                                 </div>
-                                <div className={styles.colorDetails}>
-                                    <Text variant="small" weight="bold" className={styles.colorName}>
+                                <div className="p-md flex flex-col gap-xs">
+                                    <Text variant="small" weight="bold" className="text-text-primary">
                                         {color.name}
                                     </Text>
-                                    <div className={styles.colorValue}>
+                                    <div className="px-xs py-xs bg-gray-100 rounded-sm border border-border-light font-mono dark:bg-gray-800 dark:border-gray-600">
                                         <Text variant="caption" color="muted">
                                             {color.value}
                                         </Text>
                                     </div>
                                     {showDescription && color.description && (
-                                        <Text variant="caption" color="muted" className={styles.colorDescription}>
+                                        <Text variant="caption" color="muted" className="leading-relaxed">
                                             {color.description}
                                         </Text>
                                     )}

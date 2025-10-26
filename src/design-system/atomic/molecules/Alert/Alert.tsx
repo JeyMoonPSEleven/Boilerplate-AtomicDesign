@@ -2,7 +2,7 @@
 import React from 'react';
 import { AlertProps } from './Alert.types';
 import { Icon } from '../../atoms/Icon';
-import styles from './Alert.module.css';
+import { cn } from '../../utils/cn';
 
 export const Alert: React.FC<AlertProps> = ({
     variant = 'info',

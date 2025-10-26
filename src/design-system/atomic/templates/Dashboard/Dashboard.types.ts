@@ -10,5 +10,7 @@ export interface DashboardTemplateProps {
     }>;
     headerTitle?: string;
     headerSubtitle?: string;
+    headerProps?: any;
+    sidebarProps?: any;
     className?: string;
 }

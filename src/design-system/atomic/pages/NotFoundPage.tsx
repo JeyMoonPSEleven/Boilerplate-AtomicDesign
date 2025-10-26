@@ -3,7 +3,7 @@ import { LayoutBase } from '../templates';
 import { Card } from '../molecules/Card';
 import { Heading, Text, Button } from '../atoms';
 import { Link } from '../atoms/Link';
-import styles from './NotFoundPage.module.css';
+import { cn } from '../../utils/cn';
 
 export const NotFoundPage: React.FC = () => {
     return (

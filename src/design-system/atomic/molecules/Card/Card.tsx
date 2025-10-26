@@ -1,7 +1,8 @@
 // src/design-system/atomic/molecules/Card/Card.tsx
 import React from 'react';
 import { CardProps } from './Card.types';
-import { cn, createCardClasses } from '../../../utils/cn';
+import { cn } from '../../../utils/cn';
+import { motion } from 'framer-motion';
 
 export const Card: React.FC<CardProps> = ({
     variant = 'default',
@@ -13,45 +14,64 @@ export const Card: React.FC<CardProps> = ({
     className,
     ...props
 }) => {
-    // Mapear padding a clases Tailwind
-    const paddingClasses = {
-        none: 'p-0',
-        sm: 'p-sm',
-        md: 'p-md',
-        lg: 'p-lg',
-        xl: 'p-xl',
-    };
+    const cardClasses = cn(
+        'flex flex-col w-full bg-background border border-border rounded-lg overflow-hidden transition-all',
 
-    const cardClasses = createCardClasses(
-        variant,
-        cn(
-            paddingClasses[padding],
-            hover && 'hover:shadow-md transition-shadow duration-base',
-            className
-        )
+        // Variantes
+        variant === 'default' && 'shadow-sm',
+        variant === 'elevated' && 'shadow-lg border-transparent hover:shadow-xl',
+        variant === 'outlined' && 'shadow-none border-border hover:border-border-focus',
+        variant === 'filled' && 'bg-gray-100 border-transparent hover:bg-gray-200',
+
+        // Padding
+        padding === 'none' && 'p-0',
+        padding === 'sm' && 'p-sm',
+        padding === 'md' && 'p-md',
+        padding === 'lg' && 'p-lg',
+        padding === 'xl' && 'p-xl',
+
+        // Interacciones
+        hover && 'hover:-translate-y-0.5 hover:shadow-md',
+
+        className
+    );
+
+    const headerClasses = cn(
+        'px-lg py-md border-b border-border-light bg-background-secondary'
+    );
+
+    const contentClasses = cn(
+        'flex-1',
+        !header && !footer && (padding === 'none' ? 'p-0' : padding === 'sm' ? 'p-sm' : padding === 'md' ? 'p-md' : padding === 'lg' ? 'p-lg' : 'p-xl'),
+        header && !footer && 'p-md',
+        !header && footer && 'p-md',
+        header && footer && 'p-md'
+    );
+
+    const footerClasses = cn(
+        'px-lg py-md border-t border-border-light bg-background-secondary'
     );
 
     return (
-        <div className={cardClasses} {...props}>
+        <motion.div
+            className={cardClasses}
+            whileHover={hover ? { y: -2 } : {}}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            {...props}
+        >
             {header && (
-                <div className="border-b border-border-light p-md">
+                <div className={headerClasses}>
                     {header}
                 </div>
             )}
-            <div className={cn(
-                'flex-1',
-                !header && !footer && paddingClasses[padding],
-                header && !footer && 'p-md',
-                !header && footer && 'p-md',
-                header && footer && 'p-md'
-            )}>
+            <div className={contentClasses}>
                 {children}
             </div>
             {footer && (
-                <div className="border-t border-border-light p-md">
+                <div className={footerClasses}>
                     {footer}
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 };

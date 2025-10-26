@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Heading, Text } from '../../atoms';
 import { DashboardProps, DashboardWidget } from './Dashboard.types';
-import styles from './Dashboard.module.css';
+import { cn } from '../../../utils/cn';
 
 const Dashboard: React.FC<DashboardProps> = ({
     widgets = [
@@ -11,11 +11,11 @@ const Dashboard: React.FC<DashboardProps> = ({
             size: 'small',
             type: 'metric',
             content: (
-                <div className={styles.widgetMetric}>
-                    <div className={styles.metricValue}>156</div>
-                    <div className={styles.metricLabel}>Casos Activos</div>
-                    <div className={`${styles.metricChange} ${styles.metricChangePositive}`}>
-                        <svg className={styles.metricChangeIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <div className="flex flex-col items-center text-center">
+                    <div className="text-3xl font-bold text-primary-600">156</div>
+                    <div className="text-sm text-gray-600">Casos Activos</div>
+                    <div className="flex items-center text-sm text-success-600 mt-1">
+                        <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <polyline points="23,6 13.5,15.5 8.5,10.5 1,18" />
                             <polyline points="17,6 23,6 23,12" />
                         </svg>
@@ -30,11 +30,11 @@ const Dashboard: React.FC<DashboardProps> = ({
             size: 'small',
             type: 'metric',
             content: (
-                <div className={styles.widgetMetric}>
-                    <div className={styles.metricValue}>94%</div>
-                    <div className={styles.metricLabel}>Casos Ganados</div>
-                    <div className={`${styles.metricChange} ${styles.metricChangePositive}`}>
-                        <svg className={styles.metricChangeIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <div className="flex flex-col items-center text-center">
+                    <div className="text-3xl font-bold text-success-600">94%</div>
+                    <div className="text-sm text-gray-600">Casos Ganados</div>
+                    <div className="flex items-center text-sm text-success-600 mt-1">
+                        <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <polyline points="23,6 13.5,15.5 8.5,10.5 1,18" />
                             <polyline points="17,6 23,6 23,12" />
                         </svg>
@@ -49,11 +49,11 @@ const Dashboard: React.FC<DashboardProps> = ({
             size: 'small',
             type: 'metric',
             content: (
-                <div className={styles.widgetMetric}>
-                    <div className={styles.metricValue}>€2.1M</div>
-                    <div className={styles.metricLabel}>Compensaciones</div>
-                    <div className={`${styles.metricChange} ${styles.metricChangePositive}`}>
-                        <svg className={styles.metricChangeIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <div className="flex flex-col items-center text-center">
+                    <div className="text-3xl font-bold text-primary-600">€2.1M</div>
+                    <div className="text-sm text-gray-600">Compensaciones</div>
+                    <div className="flex items-center text-sm text-success-600 mt-1">
+                        <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <polyline points="23,6 13.5,15.5 8.5,10.5 1,18" />
                             <polyline points="17,6 23,6 23,12" />
                         </svg>
@@ -68,42 +68,44 @@ const Dashboard: React.FC<DashboardProps> = ({
             size: 'large',
             type: 'table',
             content: (
-                <table className={styles.table}>
-                    <thead className={styles.tableHeader}>
-                        <tr>
-                            <th className={styles.tableHeaderCell}>Cliente</th>
-                            <th className={styles.tableHeaderCell}>Tipo</th>
-                            <th className={styles.tableHeaderCell}>Estado</th>
-                            <th className={styles.tableHeaderCell}>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className={styles.tableRow}>
-                            <td className={styles.tableCell}>María González</td>
-                            <td className={styles.tableCell}>Accidente de Tráfico</td>
-                            <td className={styles.tableCell}>
-                                <span style={{ color: 'var(--color-success)' }}>En Proceso</span>
-                            </td>
-                            <td className={styles.tableCell}>15/01/2024</td>
-                        </tr>
-                        <tr className={styles.tableRow}>
-                            <td className={styles.tableCell}>Carlos Ruiz</td>
-                            <td className={styles.tableCell}>Accidente Laboral</td>
-                            <td className={styles.tableCell}>
-                                <span style={{ color: 'var(--color-warning)' }}>Pendiente</span>
-                            </td>
-                            <td className={styles.tableCell}>12/01/2024</td>
-                        </tr>
-                        <tr className={styles.tableRow}>
-                            <td className={styles.tableCell}>Ana Martín</td>
-                            <td className={styles.tableCell}>Negligencia Médica</td>
-                            <td className={styles.tableCell}>
-                                <span style={{ color: 'var(--color-success)' }}>Completado</span>
-                            </td>
-                            <td className={styles.tableCell}>10/01/2024</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-4 py-2 text-left font-medium text-gray-700">Cliente</th>
+                                <th className="px-4 py-2 text-left font-medium text-gray-700">Tipo</th>
+                                <th className="px-4 py-2 text-left font-medium text-gray-700">Estado</th>
+                                <th className="px-4 py-2 text-left font-medium text-gray-700">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            <tr>
+                                <td className="px-4 py-2">María González</td>
+                                <td className="px-4 py-2">Accidente de Tráfico</td>
+                                <td className="px-4 py-2">
+                                    <span className="text-success-600">En Proceso</span>
+                                </td>
+                                <td className="px-4 py-2">15/01/2024</td>
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-2">Carlos Ruiz</td>
+                                <td className="px-4 py-2">Accidente Laboral</td>
+                                <td className="px-4 py-2">
+                                    <span className="text-warning-600">Pendiente</span>
+                                </td>
+                                <td className="px-4 py-2">12/01/2024</td>
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-2">Ana Martín</td>
+                                <td className="px-4 py-2">Negligencia Médica</td>
+                                <td className="px-4 py-2">
+                                    <span className="text-success-600">Completado</span>
+                                </td>
+                                <td className="px-4 py-2">10/01/2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             )
         },
         {
@@ -112,7 +114,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             size: 'medium',
             type: 'chart',
             content: (
-                <div className={styles.chart}>
+                <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg">
                     <Text variant="body" color="secondary">
                         Gráfico de rendimiento mensual
                     </Text>
@@ -125,7 +127,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             size: 'medium',
             type: 'card',
             content: (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                <div className="flex flex-col gap-3">
                     <Button variant="primary" size="medium">
                         Nuevo Caso
                     </Button>
@@ -163,97 +165,109 @@ const Dashboard: React.FC<DashboardProps> = ({
     const getWidgetSizeClass = (size: string = 'medium') => {
         switch (size) {
             case 'small':
-                return styles.widgetSmall;
+                return 'col-span-1';
             case 'large':
-                return styles.widgetLarge;
+                return 'col-span-2';
             case 'full':
-                return styles.widgetFull;
+                return 'col-span-3';
             default:
-                return styles.widgetMedium;
+                return 'col-span-1';
         }
     };
 
     return (
-        <div className={`${styles.dashboard} ${className}`} {...props}>
+        <div className={cn('min-h-screen bg-gray-50', className)} {...props}>
             {/* Header */}
             {showHeader && (
-                <header className={styles.header}>
-                    <div className={styles.headerContent}>
-                        <div className={styles.headerTitle}>
-                            <Heading level={1} variant="heading" className={styles.title}>
-                                {title}
-                            </Heading>
-                            <Text variant="body" color="secondary" className={styles.subtitle}>
-                                {subtitle}
-                            </Text>
-                        </div>
-                        <div className={styles.headerActions}>
-                            <Button variant="primary" size="medium">
-                                Nuevo Caso
-                            </Button>
+                <header className="bg-white shadow-sm border-b">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <Heading level={1} variant="heading" className="text-gray-900">
+                                    {title}
+                                </Heading>
+                                <Text variant="body" color="secondary" className="mt-1">
+                                    {subtitle}
+                                </Text>
+                            </div>
+                            <div>
+                                <Button variant="primary" size="medium">
+                                    Nuevo Caso
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </header>
             )}
 
-            <div className={styles.main}>
+            <div className="flex">
                 {/* Sidebar */}
                 {showSidebar && (
-                    <aside className={styles.sidebar}>
-                        <div className={styles.sidebarTitle}>Navegación</div>
-                        <ul className={styles.sidebarList}>
-                            {sidebarItems.map((item) => (
-                                <li key={item.id}>
-                                    <a
-                                        href={item.href}
-                                        className={`${styles.sidebarItem} ${item.id === 'overview' ? styles.sidebarItemActive : ''}`}
-                                    >
-                                        {item.icon && (
-                                            <span className={styles.sidebarIcon}>
-                                                {item.icon}
-                                            </span>
-                                        )}
-                                        {item.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
+                    <aside className="w-64 bg-white shadow-sm min-h-screen">
+                        <div className="p-4">
+                            <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">Navegación</div>
+                            <ul className="space-y-2">
+                                {sidebarItems.map((item) => (
+                                    <li key={item.id}>
+                                        <a
+                                            href={item.href}
+                                            className={cn(
+                                                'flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                                                item.id === 'overview'
+                                                    ? 'bg-primary-100 text-primary-700'
+                                                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                                            )}
+                                        >
+                                            {item.icon && (
+                                                <span className="mr-3">
+                                                    {item.icon}
+                                                </span>
+                                            )}
+                                            {item.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </aside>
                 )}
 
                 {/* Main Content */}
-                <main className={styles.content}>
+                <main className="flex-1 p-6">
                     {widgets.length > 0 ? (
-                        <div className={styles.widgetsGrid}>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {widgets.map((widget) => (
                                 <div
                                     key={widget.id}
-                                    className={`${styles.widget} ${getWidgetSizeClass(widget.size)}`}
+                                    className={cn(
+                                        'bg-white rounded-lg shadow-sm border p-6 cursor-pointer hover:shadow-md transition-shadow',
+                                        getWidgetSizeClass(widget.size)
+                                    )}
                                     onClick={() => handleWidgetClick(widget)}
                                 >
-                                    <div className={styles.widgetHeader}>
-                                        <Heading level={3} variant="subheading" className={styles.widgetTitle}>
+                                    <div className="mb-4">
+                                        <Heading level={3} variant="subheading" className="text-gray-900">
                                             {widget.title}
                                         </Heading>
                                     </div>
-                                    <div className={styles.widgetContent}>
+                                    <div>
                                         {widget.content}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <div className={styles.emptyState}>
-                            <svg className={styles.emptyStateIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <div className="flex flex-col items-center justify-center h-64 text-center">
+                            <svg className="w-12 h-12 text-gray-400 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <rect x="3" y="3" width="7" height="7" />
                                 <rect x="14" y="3" width="7" height="7" />
                                 <rect x="14" y="14" width="7" height="7" />
                                 <rect x="3" y="14" width="7" height="7" />
                             </svg>
-                            <Text variant="large" className={styles.emptyStateText}>
+                            <Text variant="large" className="text-gray-900 mb-2">
                                 No hay widgets disponibles
                             </Text>
-                            <Text variant="body" color="secondary" className={styles.emptyStateSubtext}>
+                            <Text variant="body" color="secondary">
                                 Agrega algunos widgets para personalizar tu dashboard
                             </Text>
                         </div>

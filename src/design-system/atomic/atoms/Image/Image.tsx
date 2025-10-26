@@ -1,8 +1,7 @@
 // src/design-system/atomic/atoms/Image/Image.tsx
 import React, { useState } from 'react';
 import { ImageProps } from './Image.types';
-import { cn } from '../../../utils';
-import styles from './Image.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Image: React.FC<ImageProps> = ({
     src,

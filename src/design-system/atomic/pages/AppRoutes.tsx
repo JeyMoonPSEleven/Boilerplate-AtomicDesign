@@ -17,7 +17,7 @@ export const AppRoutes: React.FC = () => {
             <React.Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     {/* Rutas principales */}
-                    <Route path="/" element={<AtomicDesignDemo />} />
+                    <Route path="/" element={<AtomicDesignShowcase />} />
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/components" element={<ComponentsPage />} />
                     <Route path="/demo" element={<AtomicDesignDemo />} />

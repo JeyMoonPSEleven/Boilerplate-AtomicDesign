@@ -2,7 +2,7 @@ import React from 'react';
 import { LayoutBase } from '../templates';
 import { Card } from '../molecules/Card';
 import { Heading, Text, Button } from '../atoms';
-import styles from './DocumentationPage.module.css';
+import { cn } from '../../utils/cn';
 
 export const DocumentationPage: React.FC = () => {
     return (

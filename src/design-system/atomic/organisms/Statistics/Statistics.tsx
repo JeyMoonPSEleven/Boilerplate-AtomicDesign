@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Heading } from '../../atoms';
 import { StatisticsProps, Statistic } from './Statistics.types';
-import styles from './Statistics.module.css';
+import { cn } from '../../../utils/cn';
 
 const Statistics: React.FC<StatisticsProps> = ({
     statistics = [

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Text, Heading } from '../../atoms';
 import { PricingProps, PricingPlan } from './Pricing.types';
-import styles from './Pricing.module.css';
+import { cn } from '../../../utils/cn';
 
 const Pricing: React.FC<PricingProps> = ({
     title = 'Planes de Precios',

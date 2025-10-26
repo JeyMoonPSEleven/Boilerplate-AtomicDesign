@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Input, Text, Heading } from '../../atoms';
 import { Alert } from '../../molecules';
 import { NewsletterProps } from './Newsletter.types';
-import styles from './Newsletter.module.css';
+import { cn } from '../../../utils/cn';
 
 const Newsletter: React.FC<NewsletterProps> = ({
     title = 'Mantente Informado',

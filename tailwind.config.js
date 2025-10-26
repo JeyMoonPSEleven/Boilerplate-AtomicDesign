@@ -9,7 +9,7 @@ export default {
     theme: {
         /* Extender el tema de Tailwind con nuestros tokens */
         extend: {
-            /* === COLORES DESDE NUESTROS TOKENS === */
+            /* === COLORES SEMÁNTICOS SIMPLIFICADOS === */
             colors: {
                 /* Colores primarios - mapeados desde --color-primary-* */
                 primary: {
@@ -24,6 +24,7 @@ export default {
                     800: 'var(--color-primary-800)',
                     900: 'var(--color-primary-900)',
                     950: 'var(--color-primary-950)',
+                    DEFAULT: 'var(--color-primary-500)', // Para usar solo 'bg-primary'
                 },
 
                 /* Colores secundarios */
@@ -39,6 +40,23 @@ export default {
                     800: 'var(--color-secondary-800)',
                     900: 'var(--color-secondary-900)',
                     950: 'var(--color-secondary-950)',
+                    DEFAULT: 'var(--color-secondary-500)',
+                },
+
+                /* Colores de acento */
+                accent: {
+                    50: 'var(--color-accent-50)',
+                    100: 'var(--color-accent-100)',
+                    200: 'var(--color-accent-200)',
+                    300: 'var(--color-accent-300)',
+                    400: 'var(--color-accent-400)',
+                    500: 'var(--color-accent-500)',
+                    600: 'var(--color-accent-600)',
+                    700: 'var(--color-accent-700)',
+                    800: 'var(--color-accent-800)',
+                    900: 'var(--color-accent-900)',
+                    950: 'var(--color-accent-950)',
+                    DEFAULT: 'var(--color-accent-500)',
                 },
 
                 /* Colores semánticos */
@@ -54,6 +72,7 @@ export default {
                     800: 'var(--color-success-800)',
                     900: 'var(--color-success-900)',
                     950: 'var(--color-success-950)',
+                    DEFAULT: 'var(--color-success-500)',
                 },
 
                 warning: {
@@ -68,6 +87,7 @@ export default {
                     800: 'var(--color-warning-800)',
                     900: 'var(--color-warning-900)',
                     950: 'var(--color-warning-950)',
+                    DEFAULT: 'var(--color-warning-500)',
                 },
 
                 danger: {
@@ -82,6 +102,7 @@ export default {
                     800: 'var(--color-danger-800)',
                     900: 'var(--color-danger-900)',
                     950: 'var(--color-danger-950)',
+                    DEFAULT: 'var(--color-danger-500)',
                 },
 
                 info: {
@@ -96,6 +117,7 @@ export default {
                     800: 'var(--color-info-800)',
                     900: 'var(--color-info-900)',
                     950: 'var(--color-info-950)',
+                    DEFAULT: 'var(--color-info-500)',
                 },
 
                 /* Grises */
@@ -113,8 +135,9 @@ export default {
                     950: 'var(--color-gray-950)',
                 },
 
-                /* Colores de texto */
+                /* Colores de texto semánticos */
                 text: {
+                    DEFAULT: 'var(--color-text-primary)', // Para usar solo 'text-text'
                     primary: 'var(--color-text-primary)',
                     secondary: 'var(--color-text-secondary)',
                     muted: 'var(--color-text-muted)',
@@ -127,18 +150,21 @@ export default {
                     'on-info': 'var(--color-text-on-info)',
                 },
 
-                /* Colores de fondo */
-                bg: {
+                /* Colores de fondo semánticos */
+                background: {
+                    DEFAULT: 'var(--color-background-primary)', // Para usar solo 'bg-background'
                     primary: 'var(--color-background-primary)',
                     secondary: 'var(--color-background-secondary)',
                     tertiary: 'var(--color-background-tertiary)',
                     body: 'var(--color-background-body)',
+                    surface: 'var(--color-background-secondary)', // Alias para surface
                     dark: 'var(--color-background-dark)',
                     overlay: 'var(--color-background-overlay)',
                 },
 
-                /* Colores de borde */
+                /* Colores de borde semánticos */
                 border: {
+                    DEFAULT: 'var(--color-border-primary)', // Para usar solo 'border-border'
                     primary: 'var(--color-border-primary)',
                     secondary: 'var(--color-border-secondary)',
                     light: 'var(--color-border-light)',

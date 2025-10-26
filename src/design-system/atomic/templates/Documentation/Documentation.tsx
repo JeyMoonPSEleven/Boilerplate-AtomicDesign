@@ -1,6 +1,6 @@
 import React from 'react';
 import { DocumentationTemplateProps } from './Documentation.types';
-import styles from './Documentation.module.css';
+import { cn } from '../../../utils/cn';
 import { Heading, Text } from '../../atoms';
 import { Footer } from '../../organisms/Footer';
 

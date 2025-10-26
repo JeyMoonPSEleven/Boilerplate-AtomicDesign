@@ -1,8 +1,7 @@
 import React from 'react';
 import { BreadcrumbProps, BreadcrumbItem } from './Breadcrumb.types';
-import { cn } from '../../../utils';
+import { cn } from '../../utils/cn';
 import { Icon } from '../../atoms/Icon';
-import styles from './Breadcrumb.module.css';
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     items,

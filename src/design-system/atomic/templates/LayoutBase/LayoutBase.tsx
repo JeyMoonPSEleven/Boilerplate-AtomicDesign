@@ -1,9 +1,8 @@
 import React from 'react';
 import { LayoutBaseProps } from './LayoutBase.types';
-import { cn } from '../../../utils';
+import { cn } from '../../../utils/cn';
 import { Header } from '../../organisms/Header';
 import { Footer } from '../../organisms/Footer';
-import styles from './LayoutBase.module.css';
 
 export const LayoutBase: React.FC<LayoutBaseProps> = ({
     children,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Logo, Link } from '../../atoms';
 import { SidebarProps, SidebarItem } from './Sidebar.types';
-import styles from './Sidebar.module.css';
+import { cn } from '../../../utils/cn';
 
 const Sidebar: React.FC<SidebarProps> = ({
     items = [

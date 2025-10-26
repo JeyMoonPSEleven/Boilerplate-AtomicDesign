@@ -42,7 +42,7 @@ import {
 
 // Organisms - No se usan en esta demo simplificada
 
-import styles from './AtomicDesignDemo.module.css';
+import { cn } from '../../utils/cn';
 
 const AtomicDesignDemo: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

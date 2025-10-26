@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SearchBarProps } from './SearchBar.types';
-import { cn } from '../../../utils';
+import { cn } from '../../../utils/cn';
 import { Icon } from '../../atoms/Icon';
-import styles from './SearchBar.module.css';
+import { Button } from '../../atoms/Button';
 
 export const SearchBar: React.FC<SearchBarProps> = ({
     value = '',
@@ -32,56 +32,73 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         onSearch?.(internalValue);
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             handleSearch();
         }
     };
 
+    const sizeClasses = {
+        small: 'h-8 px-3 text-sm',
+        medium: 'h-10 px-4 text-base',
+        large: 'h-12 px-5 text-lg',
+    };
+
+    const iconSize = {
+        small: 'small',
+        medium: 'medium',
+        large: 'large',
+    }[size];
+
     return (
-        <div className={cn(styles.searchBar, className)}>
-            <Icon
-                name="search"
-                size={size === 'small' ? 'small' : size === 'large' ? 'large' : 'medium'}
-                className={cn(styles.searchIcon, styles[size])}
-            />
+        <div className={cn('relative flex items-center', className)}>
+            <div className="relative flex-1">
+                <Icon
+                    name="Search"
+                    size={iconSize}
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                />
 
-            <input
-                type="text"
-                value={internalValue}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                placeholder={placeholder}
-                disabled={disabled}
-                className={cn(styles.searchInput, styles[size])}
-            />
-
-            {showClearButton && internalValue && (
-                <button
-                    type="button"
-                    onClick={handleClear}
+                <input
+                    type="text"
+                    value={internalValue}
+                    onChange={handleChange}
+                    onKeyPress={handleKeyPress}
+                    placeholder={placeholder}
+                    disabled={disabled}
                     className={cn(
-                        styles.clearButton,
-                        styles[size],
-                        showSearchButton && styles.withSearchButton
+                        'w-full pl-10 pr-10 border border-gray-300 rounded-md bg-white text-gray-900 placeholder-gray-500',
+                        'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500',
+                        'disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed',
+                        sizeClasses[size]
                     )}
-                    aria-label="Clear search"
-                >
-                    <Icon name="x" size="small" />
-                </button>
-            )}
+                />
+
+                {showClearButton && internalValue && (
+                    <button
+                        type="button"
+                        onClick={handleClear}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                        aria-label="Limpiar búsqueda"
+                    >
+                        <Icon name="X" size={iconSize} />
+                    </button>
+                )}
+            </div>
 
             {showSearchButton && (
-                <button
-                    type="button"
+                <Button
+                    variant="primary"
+                    size={size}
                     onClick={handleSearch}
+                    className="ml-2"
                     disabled={disabled}
-                    className={cn(styles.searchButton, styles[size])}
-                    aria-label="Search"
                 >
-                    <Icon name="search" size="small" />
-                </button>
+                    <Icon name="Search" size={iconSize} />
+                </Button>
             )}
         </div>
     );
 };
+
+export default SearchBar;

@@ -1,8 +1,7 @@
 // src/design-system/atomic/atoms/Logo/Logo.tsx
 import React from 'react';
 import { LogoProps } from './Logo.types';
-import { cn } from '../../../utils';
-import styles from './Logo.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Logo: React.FC<LogoProps> = ({
     src,

@@ -1,8 +1,7 @@
 import React from 'react';
 import { FooterProps, FooterSection } from './Footer.types';
-import { cn } from '../../../utils';
+import { cn } from '../../../utils/cn';
 import { Logo, Text, Link, Icon } from '../../atoms';
-import styles from './Footer.module.css';
 
 export const Footer: React.FC<FooterProps> = ({
     logo,

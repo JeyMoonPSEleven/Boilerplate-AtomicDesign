@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading, Text, Button } from '../../atoms';
 import { Accordion } from '../../molecules';
 import { FAQProps, FAQItem } from './FAQ.types';
-import styles from './FAQ.module.css';
+import { cn } from '../../../utils/cn';
 
 const FAQ: React.FC<FAQProps> = ({
     items = [
@@ -60,7 +60,7 @@ const FAQ: React.FC<FAQProps> = ({
         id: item.id,
         title: item.question,
         content: (
-            <div className={styles.answerContent}>
+            <div className="p-4">
                 <Text variant="body" color="secondary">
                     {item.answer}
                 </Text>
@@ -69,24 +69,24 @@ const FAQ: React.FC<FAQProps> = ({
     }));
 
     return (
-        <section className={`${styles.faq} ${className}`} {...props}>
-            <div className={styles.container}>
+        <section className={cn('py-16 bg-white', className)} {...props}>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className={styles.header}>
-                    <Text variant="small" color="accent" className={styles.subtitle}>
+                <div className="text-center mb-12">
+                    <Text variant="small" color="accent" className="uppercase tracking-wider font-medium mb-2">
                         {subtitle}
                     </Text>
-                    <Heading level={2} variant="heading" className={styles.title}>
+                    <Heading level={2} variant="heading" className="text-gray-900">
                         {title}
                     </Heading>
                 </div>
 
                 {/* Content */}
                 {variant === 'grouped' && showCategories ? (
-                    <div className={`${styles.groupedContent}`}>
+                    <div className="space-y-8">
                         {Object.entries(groupedItems).map(([category, categoryItems]) => (
-                            <div key={category} className={styles.categorySection}>
-                                <Heading level={3} variant="subheading" className={styles.categoryTitle}>
+                            <div key={category} className="space-y-4">
+                                <Heading level={3} variant="subheading" className="text-gray-900 border-b border-gray-200 pb-2">
                                     {category}
                                 </Heading>
                                 <Accordion
@@ -94,38 +94,36 @@ const FAQ: React.FC<FAQProps> = ({
                                         id: item.id,
                                         title: item.question,
                                         content: (
-                                            <div className={styles.answerContent}>
+                                            <div className="p-4">
                                                 <Text variant="body" color="secondary">
                                                     {item.answer}
                                                 </Text>
                                             </div>
                                         )
                                     }))}
-                                    variant="bordered"
+                                    allowMultiple
                                 />
                             </div>
                         ))}
                     </div>
                 ) : (
-                    <div className={styles.content}>
+                    <div className="space-y-4">
                         <Accordion
                             items={accordionItems}
-                            variant="bordered"
                             allowMultiple
                         />
                     </div>
                 )}
 
                 {/* CTA */}
-                <div className={styles.cta}>
-                    <Text variant="body" color="secondary" className={styles.ctaText}>
+                <div className="text-center mt-12 p-8 bg-gray-50 rounded-lg">
+                    <Text variant="body" color="secondary" className="mb-4">
                         ¿No encuentras la respuesta que buscas?
                     </Text>
                     <Button
                         variant="primary"
                         size="large"
                         onClick={() => window.location.href = '/contacto'}
-                        className={styles.ctaButton}
                     >
                         Contacta con nosotros
                     </Button>

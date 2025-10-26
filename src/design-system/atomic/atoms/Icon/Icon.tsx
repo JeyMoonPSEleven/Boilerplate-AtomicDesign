@@ -1,8 +1,7 @@
 // src/design-system/atomic/atoms/Icon/Icon.tsx
 import React from 'react';
 import { IconProps } from './Icon.types';
-import { cn } from '../../../utils';
-import styles from './Icon.module.css';
+import { cn } from '../../../utils/cn';
 import * as LucideIcons from 'lucide-react';
 
 export const Icon = React.memo<IconProps>(({
@@ -14,9 +13,17 @@ export const Icon = React.memo<IconProps>(({
     ...props
 }) => {
     const iconClasses = cn(
-        styles.icon,
-        styles[size],
-        styles[variant],
+        'inline-flex items-center justify-center',
+
+        // Tamaños
+        size === 'small' && 'w-4 h-4',
+        size === 'medium' && 'w-5 h-5',
+        size === 'large' && 'w-6 h-6',
+
+        // Variantes
+        variant === 'outlined' && 'border border-current rounded-sm',
+        variant === 'filled' && 'bg-current text-white rounded-sm',
+
         className
     );
 

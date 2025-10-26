@@ -1,8 +1,10 @@
 // src/design-system/atomic/molecules/Modal/Modal.tsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ModalProps } from './Modal.types';
-import { Icon } from '../../atoms/Icon';
-import styles from './Modal.module.css';
+import { cn } from '../../../utils/cn';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 
 export const Modal: React.FC<ModalProps> = ({
     isOpen,
@@ -17,82 +19,106 @@ export const Modal: React.FC<ModalProps> = ({
     showFooter = false,
     footer,
 }) => {
-    // Prevenir scroll del body cuando el modal está abierto
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
+    const overlayClasses = cn(
+        'fixed inset-0 bg-black/50 flex items-center justify-center z-modal p-md'
+    );
 
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isOpen]);
+    const modalClasses = cn(
+        'bg-background rounded-lg shadow-lg w-full max-h-[90vh] overflow-hidden flex flex-col',
 
-    // Cerrar con tecla Escape
-    useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && isOpen) {
-                onClose();
-            }
-        };
+        // Tamaños
+        size === 'small' && 'max-w-sm',
+        size === 'medium' && 'max-w-md',
+        size === 'large' && 'max-w-lg',
+        size === 'extra-large' && 'max-w-xl',
 
-        document.addEventListener('keydown', handleEscape);
-        return () => document.removeEventListener('keydown', handleEscape);
-    }, [isOpen, onClose]);
+        className
+    );
 
-    const handleOverlayClick = (e: React.MouseEvent) => {
-        if (e.target === e.currentTarget && closeOnOverlayClick) {
-            onClose();
-        }
-    };
+    const headerClasses = cn(
+        'flex items-center justify-between px-lg py-md border-b border-border-light'
+    );
 
-    if (!isOpen) return null;
+    const titleClasses = cn(
+        'text-lg font-bold text-text-primary m-0'
+    );
 
-    const modalClasses = [
-        styles.modal,
-        styles[size],
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ');
+    const closeButtonClasses = cn(
+        'bg-transparent border-none cursor-pointer p-sm rounded-sm text-text-muted transition-all',
+        'hover:bg-gray-100 hover:text-text-primary',
+        'focus:outline-none focus:shadow-focus'
+    );
+
+    const contentClasses = cn(
+        'px-lg py-md overflow-y-auto flex-1'
+    );
+
+    const footerClasses = cn(
+        'px-lg py-md border-t border-border-light flex justify-end gap-sm'
+    );
 
     return (
-        <div className={styles.overlay} onClick={handleOverlayClick}>
-            <div className={modalClasses} onClick={(e) => e.stopPropagation()}>
-                {/* Header */}
-                {(showHeader && (title || showCloseButton)) && (
-                    <div className={styles.header}>
-                        {title && (
-                            <h2 className={styles.title}>
-                                {title}
-                            </h2>
-                        )}
-                        {showCloseButton && (
-                            <button
-                                onClick={onClose}
-                                className={styles.closeButton}
-                                aria-label="Cerrar modal"
-                            >
-                                <Icon name="close" size="medium" />
-                            </button>
-                        )}
-                    </div>
-                )}
+        <DialogPrimitive.Root open={isOpen} onOpenChange={onClose}>
+            <DialogPrimitive.Portal>
+                <AnimatePresence>
+                    {isOpen && (
+                        <DialogPrimitive.Overlay asChild>
+                            <motion.div
+                                className={overlayClasses}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                            />
+                        </DialogPrimitive.Overlay>
+                    )}
+                </AnimatePresence>
 
-                {/* Content */}
-                <div className={styles.content}>
-                    {children}
-                </div>
+                <DialogPrimitive.Content asChild>
+                    <motion.div
+                        className={modalClasses}
+                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        {/* Header */}
+                        {(showHeader && (title || showCloseButton)) && (
+                            <div className={headerClasses}>
+                                {title && (
+                                    <DialogPrimitive.Title className={titleClasses}>
+                                        {title}
+                                    </DialogPrimitive.Title>
+                                )}
+                                {showCloseButton && (
+                                    <DialogPrimitive.Close asChild>
+                                        <button
+                                            className={closeButtonClasses}
+                                            aria-label="Cerrar modal"
+                                        >
+                                            <X className="w-4 h-4" />
+                                        </button>
+                                    </DialogPrimitive.Close>
+                                )}
+                            </div>
+                        )}
 
-                {/* Footer */}
-                {showFooter && footer && (
-                    <div className={styles.footer}>
-                        {footer}
-                    </div>
-                )}
-            </div>
-        </div>
+                        {/* Content */}
+                        <DialogPrimitive.Description asChild>
+                            <div className={contentClasses}>
+                                {children}
+                            </div>
+                        </DialogPrimitive.Description>
+
+                        {/* Footer */}
+                        {showFooter && footer && (
+                            <div className={footerClasses}>
+                                {footer}
+                            </div>
+                        )}
+                    </motion.div>
+                </DialogPrimitive.Content>
+            </DialogPrimitive.Portal>
+        </DialogPrimitive.Root>
     );
 };

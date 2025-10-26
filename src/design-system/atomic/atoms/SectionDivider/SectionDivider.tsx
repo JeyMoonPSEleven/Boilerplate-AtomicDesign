@@ -1,6 +1,6 @@
 // src/design-system/atomic/atoms/SectionDivider/SectionDivider.tsx
 import React from 'react';
-import styles from './SectionDivider.module.css';
+import { cn } from '../../../utils/cn';
 
 export interface SectionDividerProps {
     variant?: 'line' | 'dashed' | 'dotted' | 'gradient' | 'text' | 'icon';

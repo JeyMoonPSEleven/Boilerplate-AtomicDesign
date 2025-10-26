@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Icon } from '../Icon';
 import { Button } from '../Button';
 import { Text } from '../Text';
-import styles from './MediaGallery.module.css';
+import { cn } from '../../../utils/cn';
 
 export interface MediaItem {
     id: string;

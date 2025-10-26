@@ -1,7 +1,7 @@
 // src/design-system/atomic/atoms/Text/Text.tsx
 import React from 'react';
 import { TextProps } from './Text.types';
-import styles from './Text.module.css';
+import { cn } from '../../../utils/cn';
 
 export const Text: React.FC<TextProps> = ({
     variant = 'body',
@@ -12,16 +12,39 @@ export const Text: React.FC<TextProps> = ({
     className,
     ...props
 }) => {
-    const textClasses = [
-        styles.text,
-        styles[variant],
-        styles[color],
-        styles[weight],
-        styles[`align-${align}`],
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ');
+    const textClasses = cn(
+        // Clases base
+        'font-base leading-normal',
+
+        // Variantes de tamaño
+        variant === 'body' && 'text-base',
+        variant === 'caption' && 'text-sm',
+        variant === 'small' && 'text-sm',
+        variant === 'large' && 'text-lg',
+
+        // Colores
+        color === 'primary' && 'text-text-primary',
+        color === 'secondary' && 'text-text-secondary',
+        color === 'muted' && 'text-text-muted',
+        color === 'accent' && 'text-primary',
+        color === 'success' && 'text-success',
+        color === 'danger' && 'text-danger',
+        color === 'warning' && 'text-warning',
+        color === 'info' && 'text-info',
+
+        // Pesos de fuente
+        weight === 'light' && 'font-light',
+        weight === 'normal' && 'font-normal',
+        weight === 'bold' && 'font-bold',
+
+        // Alineación
+        align === 'left' && 'text-left',
+        align === 'center' && 'text-center',
+        align === 'right' && 'text-right',
+
+        // Clases externas
+        className
+    );
 
     return (
         <span className={textClasses} {...props}>
